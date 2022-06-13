@@ -1,0 +1,186 @@
+from django import forms
+
+from . import models
+
+class CompanyForm(forms.ModelForm):
+    """Manage company creations"""
+    class Meta:
+        model = models.Company
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'label': 'Company Name',
+                'class': 'form-control',
+                'name': 'name',
+                'id': 'name',
+                'placeholder': 'Enter company name',
+                'required': True,
+                },
+            ),
+            'vat_id': forms.TextInput(attrs={
+                'label': 'Vat Id',
+                'class': 'form-control',
+                'name': 'vat_id',
+                'id': 'vat_id',
+                'placeholder': 'Enter vat id',
+                'required': False,
+                },
+            ),
+            'industry': forms.Select(attrs={
+                'label': 'Industry',
+                'class': 'form-control',
+                'name': 'industry',
+                'id': 'industry',
+                'placeholder': 'Enter industry',
+                'required': True,
+                },
+            ),
+            'city': forms.TextInput(attrs={
+                'label': 'City',
+                'class': 'form-control',
+                'name': 'city',
+                'id': 'city',
+                'placeholder': 'Enter city',
+                'required': True,
+                },
+            ),
+            'address': forms.TextInput(attrs={
+                'label': 'Address',
+                'class': 'form-control',
+                'name': 'address',
+                'id': 'address',
+                'placeholder': 'Enter address',
+                'required': True,
+                },
+            ),
+            'zip_code': forms.TextInput(attrs={
+                'label': 'Zip code',
+                'class': 'form-control',
+                'name': 'zip_code',
+                'id': 'zip_code',
+                'placeholder': 'Enter zip code',
+                'required': True,
+                },
+            ),
+            'country': forms.TextInput(attrs={
+                'label': 'Country',
+                'class': 'form-control',
+                'name': 'country',
+                'id': 'country',
+                'placeholder': 'Enter country',
+                'required': True,
+                },
+            ),
+            'website': forms.URLInput(attrs={
+                'label': 'Website',
+                'class': 'form-control',
+                'name': 'website',
+                'id': 'website',
+                'placeholder': 'Enter website',
+                'required': False,
+                },
+            ),
+            'notes': forms.Textarea(attrs={
+                'label': 'Notes',
+                'class': 'form-control',
+                'name': 'notes',
+                'id': 'notes',
+                'rows': 4, 
+                'cols': 10, 
+                'placeholder': 'Additional notes',
+                'required': False,
+                },
+            ),
+        }
+        
+class InvoiceForm(forms.ModelForm):
+    """Manage invoice creation"""
+    class Meta:
+        model = models.Invoice
+        fields = '__all__'
+        widgets = {
+            'sender': forms.Select(attrs={
+                'label': 'Sender',
+                'class': 'form-control',
+                'name': 'sender',
+                'id': 'sender',
+                'placeholder': 'Enter sender name',
+                'required': True,
+                },
+            ),
+            'receiver': forms.Select(attrs={
+                'label': 'Receiver',
+                'class': 'form-control',
+                'name': 'receiver',
+                'id': 'receiver',
+                'placeholder': 'Enter receiver name',
+                'required': True,
+                },
+            ),
+            'date': forms.DateInput(attrs={
+                'label': 'Emission Date',
+                'class': 'form-control',
+                'name': 'date',
+                'id': 'date',
+                'placeholder': 'dd/mm/yyyy',
+                'required': True,
+                },
+            ),
+            'number': forms.TextInput(attrs={
+                'label': 'Invoice Number',
+                'class': 'form-control',
+                'name': 'number',
+                'id': 'number',
+                'placeholder': 'Enter invoice number',
+                'required': True,
+                },
+            ),
+            'amount': forms.NumberInput(attrs={
+                'label': 'Invoice Amount',
+                'class': 'form-control',
+                'name': 'amount',
+                'id': 'amount',
+                'placeholder': 'Enter amount in euros',
+                'required': True,
+                },
+            ),
+            'kind': forms.Select(attrs={
+                'label': 'Invoice Type',
+                'class': 'form-control',
+                'name': 'kind',
+                'id': 'kind',
+                'placeholder': 'Enter invoice type',
+                'required': True,
+                },
+            ),
+            'due_date': forms.DateInput(attrs={
+                'label': 'Invoice Due Date',
+                'class': 'form-control',
+                'name': 'due_date',
+                'id': 'due_date',
+                'placeholder': 'Enter invoice due date',
+                'required': True,
+                },
+            ),
+            'status': forms.Select(attrs={
+                'label': 'Invoice Status',
+                'class': 'form-control',
+                'name': 'status',
+                'id': 'status',
+                'placeholder': 'Enter invoice status',
+                'required': True,
+                },
+            ),
+            'notes': forms.Textarea(attrs={
+                'label': 'Notes',
+                'class': 'form-control',
+                'name': 'notes',
+                'id': 'notes',
+                'rows': 4, 
+                'cols': 10, 
+                'placeholder': 'Additional notes',
+                'required': False,
+                },
+            ),
+        }         
+        

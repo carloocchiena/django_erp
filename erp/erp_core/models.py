@@ -1,7 +1,7 @@
 from enum import Enum
 from django.db import models
 
-# https://notestoself.dev/posts/django-field-choices-inner-class-enum/
+
 class ChoiceEnum(Enum):
     @classmethod
     def choices(cls):
@@ -32,12 +32,24 @@ class Company(models.Model):
     def __str__(self):
         return self.name.upper()
     
-
-
-
-
-
-"""
-azienda (nome, partita iva, settore, città, indirizzo, cap, provincia, nazione, sito web, note)
-fattura (emittente, destinatario, data, numero, importo, tipologia di fattura, scadenza, stato pagamento, note)
-"""
+class Invoice(models.Model):
+    """Create invoice and their attributes"""
+    class Kind(ChoiceEnum):
+        """Create industry choices"""
+        ACTIVE = 'Active'
+        PASSIVE = 'Passive'
+        CREDIT = 'Credit Note'
+    
+    class Status(ChoiceEnum):
+        PAID = "Paid"
+        UNPAID = "Unpaid"
+        
+    sender = models.ForeignKey(Company, related_name="invoice_sender", on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Company, related_name="invoice_receiver", on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    number = models.PositiveIntegerField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    kind = models.CharField(max_length=10, choices=Kind.choices())
+    due_date = models.DateField()
+    status = models.CharField(max_length=10, choices=Status.choices(), default=Status.UNPAID)
+    notes = models.TextField(blank=True, null=True)
