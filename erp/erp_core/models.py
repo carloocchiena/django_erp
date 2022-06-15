@@ -21,7 +21,7 @@ class Company(models.Model):
          
     name = models.CharField(max_length=100)
     vat_id = models.CharField(max_length=15, unique=True, blank=True, null=True)
-    industry = models.CharField(max_length=15, choices=Industry.choices(), default=Industry.TECH)
+    industry = models.CharField(max_length=15, choices=Industry.choices(), default=Industry.choices()[0][0])
     city = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
     zip_code =  models.CharField(max_length=10)
@@ -49,7 +49,15 @@ class Invoice(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     number = models.PositiveIntegerField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    kind = models.CharField(max_length=10, choices=Kind.choices())
+    kind = models.CharField(max_length=10, choices=Kind.choices(), default=Kind.choices()[0][0])
     due_date = models.DateField()
-    status = models.CharField(max_length=10, choices=Status.choices(), default=Status.UNPAID)
+    status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
+
+
+
+
+"""
+print(Company.Industry.choices()[0][0])
+ENERGY
+"""

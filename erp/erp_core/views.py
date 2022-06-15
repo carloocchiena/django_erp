@@ -7,19 +7,18 @@ from . import models, forms
 
 class Home(View):
     def get(self, request):
-        return render(request, 'base.html')
+        return render(request, 'erp_core/home.html')
     
 class CompanyCreate(CreateView):
     """Create a new company"""
     model = models.Company
     form_class = forms.CompanyForm
-    success_url = reverse_lazy('erp:home') # aggiornare con company list
+    success_url = reverse_lazy('erp_core:home') # aggiornare con company list
     
-# to be done
 class InvoiceCreate(CreateView):
     """Create a new invoice"""
     model = models.Invoice
     form_class = forms.InvoiceForm
-    success_url = reverse_lazy('erp:home') # aggiornare con invoice list
+    success_url = reverse_lazy('erp_core:home') # aggiornare con invoice list
     
     
