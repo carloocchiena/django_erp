@@ -27,6 +27,7 @@ FORM:
 
 TO BE DONE:
 - review completa UI
+- pagina di dettaglio delle aziende
 - ~~fix trattino tra i btn della home~~
 - fix la validazione dei dati dentro i form
 - fix i valori di default nei menu dropdown

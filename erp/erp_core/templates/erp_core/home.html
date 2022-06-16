@@ -14,17 +14,28 @@
             <div class="col-6">
                 <div class"btn-group">
                     <a href="{% url 'erp_core:company_create' %}"
-                        <button class="btn btn-info text-light">Add a new company</button>
+                        <button class="btn btn-info text-light mb-3">Add a new company</button>
                     </a>
 
                     <a href="{% url 'erp_core:invoice_create' %}"
-                        <button class="btn btn-info text-light">Add a new invoice</button>
+                        <button class="btn btn-info text-light mb-3">Add a new invoice</button>
                     </a>
 
                     <a href="http://127.0.0.1:8000/admin/"
-                        <button class="btn btn-info text-light">TEMP ADMIN</button>
+                        <button class="btn btn-info text-light mb-3">TEMP ADMIN</button>
                     </a>
                 </div>
+                <div class="col-6">
+                    <div class"btn-group">
+                        <a href="{% url 'erp_core:company_list' %}"
+                            <button class="btn btn-info text-light mb-3">Company list</button>
+                        </a>
+
+                        <a href="{% url 'erp_core:invoice_list' %}"
+                            <button class="btn btn-info text-light mb-3">Invoice list</button>
+                        </a>
+                            
+                    </div>
             </div>
         </div>
     </div>

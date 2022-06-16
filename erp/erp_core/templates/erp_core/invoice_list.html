@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Invoice List</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>&nbsp;Invoice list</h2>
+        <div class="row">
+            <div class="col-6">
+                {% for invoice in object_list %}
+                <div class="card m-2">
+                    <div class="card-body">
+                        <div class="col">
+                            <p class="card-text">
+                                <strong>Invoice #:</strong> {{ invoice.id }}
+                                <br>
+                                From: {{ invoice.sender }}
+                                <br>
+                                To: {{ invoice.receiver }}
+                                <br>
+                                {{ invoice.kind }}
+                                <br>
+                                Amount: {{ invoice.amount }}
+                                <br>
+                                Issued: {{ invoice.date|date:"Y-m-d" }}
+                                <br>
+                                Due date: {{ invoice.due_date|date:"Y-m-d" }}
+                                <br>
+                                Status: {{ invoice.status }}
+
+                        </div>
+                        {% comment %} <a href="{% url 'erp_core:company_detail' company.name %}" class="btn btn-info text-light">View Company Details</a> {% endcomment %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

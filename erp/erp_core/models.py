@@ -53,11 +53,7 @@ class Invoice(models.Model):
     due_date = models.DateField()
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
-
-
-
-
-"""
-print(Company.Industry.choices()[0][0])
-ENERGY
-"""
+    
+    def __str__(self):
+        return self.sender, self.amount
+    

@@ -20,5 +20,17 @@ class InvoiceCreate(CreateView):
     model = models.Invoice
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:home') # aggiornare con invoice list
+
+class CompanyList(ListView):
+    """View all profiles"""
+    model = models.Company
     
+class InvoiceList(ListView):
+    """View all invoices"""
+    model = models.Invoice  
+    
+class CompanyDetail(DetailView):
+    """View a single profile"""
+    model = models.Company
+    slug_field = 'vat_id'
     
