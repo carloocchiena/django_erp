@@ -33,4 +33,5 @@ TO BE DONE:
 - ~~fix i valori di default nei menu dropdown~~
 - gestire vista fatture scadute e non scadute
 - gestire vista fatture attive e passive
-- gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering)
+- gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering, https://django-filter.readthedocs.io/en/main/guide/usage.html e questo fatto veramente bene, passo passo https://www.youtube.com/watch?v=nle3u6Ww6Xk)
+- generare reportistica (https://rb.gy/exhd1o)

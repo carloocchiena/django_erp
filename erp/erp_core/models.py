@@ -55,5 +55,4 @@ class Invoice(models.Model):
     notes = models.TextField(blank=True, null=True)
     
     def __str__(self):
-        return self.sender, self.amount
-    
+        return f"{self.sender}, {self.amount}"    
