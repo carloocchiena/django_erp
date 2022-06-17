@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <div class="col">
                             <p class="card-text">
-                                <strong>Invoice #:</strong> {{ invoice.id }}
+                                <strong>Invoice nr:</strong> {{ invoice.id }}
                                 <br>
                                 From: {{ invoice.sender }}
                                 <br>
@@ -31,9 +31,13 @@
                                 Due date: {{ invoice.due_date|date:"Y-m-d" }}
                                 <br>
                                 Status: {{ invoice.status }}
+                                <br>
+                                <a href="{% url 'erp_core:invoice_update' invoice.id %}" class="btn btn-info btn-sm text-light">
+                                    Update invoice
+                                </a>
 
                         </div>
-                        {% comment %} <a href="{% url 'erp_core:company_detail' company.name %}" class="btn btn-info text-light">View Company Details</a> {% endcomment %}
+                       
                     </div>
                 </div>
                 {% endfor %}

@@ -26,7 +26,10 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <a class="navbar-brand text-light m-4" href="{% url 'erp_core:home' %}"><h2><i class="fa-solid fa-meteor"></i>&nbsp;</i> Django ERP</h2></a>
+        <a class="navbar-brand text-light m-4" href="{% url 'erp_core:home' %}">
+            <h2><i class="fa-solid fa-meteor"></i>&nbsp;</i>sERPent</h2>
+            <h6 class="text-light small">Python ERP prototype </h6>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#ffffff"></i></span>
         </button>
@@ -35,7 +38,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="{% url 'erp_core:home' %}">TBA</a>
+                    <a class="nav-link text-light" href="{% url 'erp_core:company_create' %}">Add New Co</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'erp_core:invoice_create' %}">Add New Inv</a>
                 </li>
             </ul>
 

@@ -27,7 +27,10 @@ FORM:
 
 TO BE DONE:
 - review completa UI
-- pagina di dettaglio delle aziende
+- ~~pagina di dettaglio delle aziende~~
 - ~~fix trattino tra i btn della home~~
 - fix la validazione dei dati dentro i form
-- fix i valori di default nei menu dropdown
+- ~~fix i valori di default nei menu dropdown~~
+- gestire vista fatture scadute e non scadute
+- gestire vista fatture attive e passive
+- gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering)
