@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from . import models, forms
+from . import models, forms, filters
 
 class Home(View):
     def get(self, request):
@@ -23,6 +23,13 @@ class CompanyDetail(DetailView):
 class CompanyList(ListView):
     """View all profiles"""
     model = models.Company
+    
+    #filter add on
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = filters.CompanyFilter(self.request.GET, queryset=self.get_queryset())
+        return context
+    
     
 class InvoiceCreate(CreateView):
     """Create a new invoice"""
