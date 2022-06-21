@@ -8,57 +8,72 @@
 {% block content %}
 
     <div class="container">
+        
         <h2>&nbsp;Company list</h2>
 
         <div class="row">
-            <div class="col-8">
-                <form action="" method="GET">
-                    <div class="form-group mx-auto mb-2">
-                        {{ filter.form.name }}
-                        {% comment %} https://getbootstrap.com/docs/5.0/forms/layout/  {% endcomment %}
-                    </div>
-                   
-                    <div class="form-group mx-auto mb-2">
-                        {{ item.label }}</br>
-                        {{ item }}
-                    </div>
+            <div class="col-5">
+                <h5 class="ms-2">Search via query</h5>
+                <form action="" method="get">
+                    <div class="row g-3">
+                        <div class="col ms-2">
+                            {{ filter.form.name__icontains.label }}<br>
+                            {{ filter.form.name__icontains }}<br>
+                            {{ filter.form.vat_id__icontains.label }}<br>
+                            {{ filter.form.vat_id__icontains }}<br>
+                            {{ filter.form.industry__icontains.label }}<br>
+                            {{ filter.form.industry__icontains }}<br>
+                            {{ filter.form.city__icontains.label }}<br>
+                            {{ filter.form.city__icontains }}<br>
+                            {{ filter.form.address__icontains.label }}<br>
+                            {{ filter.form.address__icontains }}<br>
 
-                    <input type="submit" class="btn btn-info text-light", value="Search">
+                        </div>
+                        <div class="col ms-2">
+                            {{ filter.form.zip_code__icontains.label }}<br>
+                            {{ filter.form.zip_code__icontains }}<br>
+                            {{ filter.form.country__icontains.label }}<br>
+                            {{ filter.form.country__icontains }}<br>
+                            {{ filter.form.website__icontains.label }}<br>
+                            {{ filter.form.website__icontains }}<br>
+                            {{ filter.form.notes__icontains.label }}<br>
+                            {{ filter.form.notes__icontains }}<br>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-info text-light mx-2", value="Search">
                     <a href="{% url 'erp_core:company_list' %}" class="btn text-light btn-info">Clean filters</a>
                 </form>
-                <br><br>
-            </div>    
-        </div>
-
-            <div class="col-6">
-                {% comment %} {% for company in object_list %} {% endcomment %}
-                {% if filter.qs is None %}
-                    { filter.qs = object_list }
-                {% endif %}
-                {% for company in filter.qs %} 
-                <div class="card m-2">
-                    <div class="card-body">
-                        <div class="col d-flex">
-                            <a href="{% url 'erp_core:company_detail' company.vat_id %}">
-                                <h6 class="card-title my-auto">{{ company.name|upper }}</h6>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">
-                                {{ company.industry }}
-                                <br>
-                                {% if company.website %}
-                                    <a href="{{ company.website }}" target="_blank">{{ company.website }}</a>
-                                {% else %}
-                                    <span>No website</span>
-                                {% endif %}
-                            </p>
+                <br>
+                
+                <div class="col">
+                    {% if filter.qs is None %}
+                        { filter.qs = object_list }
+                    {% endif %}
+                    {% for company in filter.qs %} 
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <div class="col d-flex">
+                                <a href="{% url 'erp_core:company_detail' company.vat_id %}">
+                                    <h6 class="card-title my-auto">{{ company.name|upper }}</h6>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <p class="card-text">
+                                    {{ company.industry }}
+                                    <br>
+                                    {% if company.website %}
+                                        <a href="{{ company.website }}" target="_blank">{{ company.website }}</a>
+                                    {% else %}
+                                        <span>No website</span>
+                                    {% endif %}
+                                </p>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-
         </div>
     </div>
     
