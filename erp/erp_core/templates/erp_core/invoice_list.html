@@ -16,22 +16,14 @@
                     <div class="card-body">
                         <div class="col">
                             <p class="card-text">
-                                <strong>Invoice nr:</strong> {{ invoice.id }}
-                                <br>
-                                From: {{ invoice.sender }}
-                                <br>
-                                To: {{ invoice.receiver }}
-                                <br>
-                                {{ invoice.kind }}
-                                <br>
-                                Amount: {{ invoice.amount }}
-                                <br>
-                                Issued: {{ invoice.date|date:"Y-m-d" }}
-                                <br>
-                                Due date: {{ invoice.due_date|date:"Y-m-d" }}
-                                <br>
-                                Status: {{ invoice.status }}
-                                <br>
+                                <strong>Invoice nr:</strong> {{ invoice.id }}<br>
+                                From: {{ invoice.sender }}<br>
+                                To: {{ invoice.receiver }}<br>
+                                Kind: {{ invoice.kind }}<br>
+                                Amount: {{ invoice.amount }}<br>
+                                Issued: {{ invoice.date|date:"Y-m-d" }}<br>
+                                Due date: {{ invoice.due_date|date:"Y-m-d" }}<br>
+                                Status: {{ invoice.status }}<br>
                                 <a href="{% url 'erp_core:invoice_update' invoice.id %}" class="btn btn-info btn-sm text-light">
                                     Update invoice
                                 </a>
