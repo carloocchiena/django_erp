@@ -8,31 +8,70 @@
 {% block content %}
 
     <div class="container">
+
         <h2>&nbsp;Invoice list</h2>
+
         <div class="row">
-            <div class="col-6">
-                {% for invoice in object_list %}
-                <div class="card m-2">
-                    <div class="card-body">
-                        <div class="col">
-                            <p class="card-text">
-                                <strong>Invoice nr:</strong> {{ invoice.id }}<br>
-                                From: {{ invoice.sender }}<br>
-                                To: {{ invoice.receiver }}<br>
-                                Kind: {{ invoice.kind }}<br>
-                                Amount: {{ invoice.amount }}<br>
-                                Issued: {{ invoice.date|date:"Y-m-d" }}<br>
-                                Due date: {{ invoice.due_date|date:"Y-m-d" }}<br>
-                                Status: {{ invoice.status }}<br>
-                                <a href="{% url 'erp_core:invoice_update' invoice.id %}" class="btn btn-info btn-sm text-light">
-                                    Update invoice
-                                </a>
+            <div class="col-5">
+                <h5 class="ms-2">Search via query</h5>
+                <form action="" method="get">
+                    <div class="row g-3">
+                        <div class="col ms-2">
+                            {{ filter.form.sender__name__icontains.label }}<br>
+                            {{ filter.form.sender__name__icontains }}<br>
+                            {{ filter.form.receiver__name__icontains.label }}<br>
+                            {{ filter.form.receiver__name__icontains }}<br>
+                            {{ filter.form.date__icontains.label }}<br>
+                            {{ filter.form.date__icontains }}<br>
+                            {{ filter.form.number__icontains.label }}<br>
+                            {{ filter.form.number__icontains }}<br>
+                            {{ filter.form.amount__icontains.label }}<br>
+                            {{ filter.form.amount__icontains }}<br>
 
                         </div>
-                       
+                        <div class="col ms-2">
+                            {{ filter.form.kind__icontains.label }}<br>
+                            {{ filter.form.kind__icontains }}<br>
+                            {{ filter.form.due_date__icontains.label }}<br>
+                            {{ filter.form.due_date__icontains }}<br>
+                            {{ filter.form.status__icontains.label }}<br>
+                            {{ filter.form.status__icontains }}<br>
+                            {{ filter.form.notes__icontains.label }}<br>
+                            {{ filter.form.notes__icontains }}<br>
+                        </div>
                     </div>
+                    <br>
+                    <input type="submit" class="btn btn-info text-light mx-2", value="Search">
+                    <a href="{% url 'erp_core:invoice_list' %}" class="btn text-light btn-info">Clean filters</a>
+                </form>
+                <br>
+
+                <div class="col-6">
+                    {% if filter.qs is None %}
+                        { filter.qs = object_list }
+                    {% endif %}
+                    {% for invoice in filter.qs %} 
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <div class="col">
+                                <p class="card-text">
+                                    <strong>Invoice nr:</strong> {{ invoice.id }}<br>
+                                    From: {{ invoice.sender }}<br>
+                                    To: {{ invoice.receiver }}<br>
+                                    Kind: {{ invoice.kind }}<br>
+                                    Amount: {{ invoice.amount }}<br>
+                                    Issued: {{ invoice.date|date:"Y-m-d" }}<br>
+                                    Due date: {{ invoice.due_date|date:"Y-m-d" }}<br>
+                                    Status: {{ invoice.status }}<br>
+                                    <a href="{% url 'erp_core:invoice_update' invoice.id %}" class="btn btn-info btn-sm text-light">
+                                        Update invoice
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>

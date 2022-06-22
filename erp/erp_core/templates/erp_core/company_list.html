@@ -67,6 +67,9 @@
                                     {% else %}
                                         <span>No website</span>
                                     {% endif %}
+                                    <br><a href="{% url 'erp_core:company_update' company.id %}" class="btn btn-info btn-sm text-light">
+                                        Update company
+                                    </a>
                                 </p>
                             </div>
                         </div>

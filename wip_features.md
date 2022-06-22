@@ -33,6 +33,9 @@ TO BE DONE:
 - ~~fix i valori di default nei menu dropdown~~
 - gestire vista fatture scadute e non scadute
 - gestire vista fatture attive e passive
+- ~~aggiungere vista aggiornamento aziende~~
+- sistemare flusso login-logout in ogni sua parte (template, view)
 - ~~gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering, https://django-filter.readthedocs.io/en/main/guide/usage.html e questo fatto veramente bene, passo passo https://www.youtube.com/watch?v=nle3u6Ww6Xk)~~
-- sistemare UI pagine di ricerca
+- sistemare campo di ricerca per data in aziende e fatture
+- ~~sistemare UI pagine di ricerca~~
 - generare reportistica (https://rb.gy/exhd1o)

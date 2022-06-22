@@ -23,8 +23,8 @@ class InvoiceFilter(django_filters.FilterSet):
     class Meta:
         model = models.Invoice
         fields = {
-            #'sender': ['icontains', 'Company__name'],  # how to use icontains with foreign key https://django-filter.readthedocs.io/en/stable/guide/usage.html?#generating-filters-with-meta-fields
-            #'receiver': ['icontains'],
+            'sender__name': ['icontains'], 
+            'receiver__name': ['icontains'],
             'date': ['icontains'], 
             'number': ['icontains'], 
             'amount': ['icontains'], 

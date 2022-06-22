@@ -24,12 +24,17 @@ class CompanyList(ListView):
     """View all profiles"""
     model = models.Company
     
-    #filter add on
+    # filter via query
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = filters.CompanyFilter(self.request.GET, queryset=self.get_queryset())
         return context
     
+class CompanyUpdate(UpdateView):
+    """Update a company"""
+    model = models.Company
+    form_class = forms.CompanyForm
+    success_url = reverse_lazy('erp_core:company_list')
     
 class InvoiceCreate(CreateView):
     """Create a new invoice"""
@@ -39,7 +44,13 @@ class InvoiceCreate(CreateView):
     
 class InvoiceList(ListView):
     """View all invoices"""
-    model = models.Invoice  
+    model = models.Invoice
+    
+    # filter via query
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = filters.InvoiceFilter(self.request.GET, queryset=self.get_queryset())
+        return context  
     
 class InvoiceUpdate(UpdateView):
     """Update an invoice"""
