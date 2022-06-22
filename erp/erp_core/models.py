@@ -8,10 +8,7 @@ class ChoiceEnum(Enum):
         return [(choice.name, choice.value) for choice in cls]
     
 class Company(models.Model):
-    """Create company profile and their attributes"""
-    class Meta:
-        verbose_name_plural = "Companies"
-    
+    """Create company profile and their attributes"""   
     class Industry(ChoiceEnum):
         """Create industry choices"""
         ENERGY = 'Energy'
@@ -31,6 +28,7 @@ class Company(models.Model):
     
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "companies"
 
     def __str__(self):
         return self.name.upper()
