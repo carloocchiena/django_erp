@@ -25,11 +25,11 @@ class InvoiceFilter(django_filters.FilterSet):
         fields = {
             'sender__name': ['icontains'], 
             'receiver__name': ['icontains'],
-            'date': ['icontains'], 
+            'date': ['date'], 
             'number': ['icontains'], 
             'amount': ['icontains'], 
             'kind': ['icontains'], 
-            'due_date': ['icontains'], 
+            'due_date': ['date'], 
             'status': ['icontains'], 
             'notes': ['icontains'], 
         }

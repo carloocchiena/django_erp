@@ -39,3 +39,10 @@ TO BE DONE:
 - sistemare campo di ricerca per data in aziende e fatture (partire da https://django-filter.readthedocs.io/en/stable/search.html?q=icontains&check_keywords=yes&area=default)
 - ~~sistemare UI pagine di ricerca~~
 - generare reportistica (https://rb.gy/exhd1o)
+
+
+doc reading list:
+- https://docs.djangoproject.com/en/4.0/ref/models/querysets/#field-lookups
+- https://docs.djangoproject.com/en/4.0/ref/models/querysets/#std-fieldlookup-icontains
+- https://docs.djangoproject.com/en/4.0/topics/security/#security-in-django 
+- https://docs.djangoproject.com/en/4.0/topics/pagination/ 
