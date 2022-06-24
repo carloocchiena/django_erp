@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title %}
+    <title>ERP Home Page</title>
+{% endblock title %}
+
+{% block content %}
+    
+    <div class="container">
+
+        <h1 class="mb-4">{{ user.username|title }}, here's the available filters</h1>
+        <div class="row">
+            <div class="col-6">
+                <div class"btn-group">
+                    <a href="{% url 'erp_core:invoice_active' %}"
+                        <button class="btn btn-info text-light mb-3">All active invoices</button>
+                    </a>
+
+                    <a href="{% url 'erp_core:invoice_passive' %}"
+                        <button class="btn btn-info text-light mb-3">All passive invoices</button>
+                    </a>
+
+                </div>
+                <div class="col">
+           
+                            
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

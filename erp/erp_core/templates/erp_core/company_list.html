@@ -50,6 +50,7 @@
                     {% if filter.qs is None %}
                         { filter.qs = object_list }
                     {% endif %}
+                    <p>&nbsp;There are {{ filter.qs.count }} companies</p>
                     {% for company in filter.qs %} 
                     <div class="card m-2">
                         <div class="card-body">

@@ -32,7 +32,7 @@ TO BE DONE:
 - fix la validazione dei dati dentro i form
 - ~~fix i valori di default nei menu dropdown~~
 - gestire vista fatture scadute e non scadute
-- gestire vista fatture attive e passive
+- ~~gestire vista fatture attive e passive~~
 - ~~aggiungere vista aggiornamento aziende~~
 - sistemare flusso login-logout in ogni sua parte (template, view)
 - ~~gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering, https://django-filter.readthedocs.io/en/main/guide/usage.html e questo fatto veramente bene, passo passo https://www.youtube.com/watch?v=nle3u6Ww6Xk)~~
@@ -44,5 +44,4 @@ TO BE DONE:
 doc reading list:
 - https://docs.djangoproject.com/en/4.0/ref/models/querysets/#field-lookups
 - https://docs.djangoproject.com/en/4.0/ref/models/querysets/#std-fieldlookup-icontains
-- https://docs.djangoproject.com/en/4.0/topics/security/#security-in-django 
 - https://docs.djangoproject.com/en/4.0/topics/pagination/ 

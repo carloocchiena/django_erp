@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -8,7 +8,9 @@ from . import models, forms, filters
 class Home(View):
     def get(self, request):
         return render(request, 'erp_core/home.html')
-    
+        
+# company management 
+
 class CompanyCreate(CreateView):
     """Create a new company"""
     model = models.Company
@@ -36,6 +38,9 @@ class CompanyUpdate(UpdateView):
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list')
     
+
+# invoice management
+    
 class InvoiceCreate(CreateView):
     """Create a new invoice"""
     model = models.Invoice
@@ -57,6 +62,30 @@ class InvoiceUpdate(UpdateView):
     model = models.Invoice
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list')
+    
+# pre-made filterd views
+
+class FilteredView(View):
+    def get(self, request):
+        return render(request, 'erp_core/filtered_view.html')
+
+class InvoiceActive(View):
+    """Pre-made filter for active invoices"""
+    model = models.Invoice
+    template_name = 'erp_core/invoice_active.html'
+    
+    def get(self, request):
+        context = self.model.objects.all().filter(kind='ACTIVE')
+        return render(request, self.template_name, {'context': context})
+
+class InvoicePassive(View):
+    """Pre-made filter for passive invoices"""
+    model = models.Invoice
+    template_name = 'erp_core/invoice_passive.html'
+    
+    def get(self, request):
+        context = self.model.objects.all().filter(kind='PASSIVE')
+        return render(request, self.template_name, {'context': context}) 
     
 
     

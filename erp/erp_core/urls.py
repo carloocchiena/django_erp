@@ -17,4 +17,7 @@ urlpatterns = [
     path('company_detail/<slug:slug>/', login_required(views.CompanyDetail.as_view()), name='company_detail'),
     path('invoice_update/<int:pk>/', login_required(views.InvoiceUpdate.as_view()), name='invoice_update'),
     path('company_update/<int:pk>/', login_required(views.CompanyUpdate.as_view()), name='company_update'),
+    path('filtered_view/', login_required(views.FilteredView.as_view()), name='filtered_view'),
+    path('filtered_view/invoice_active/', login_required(views.InvoiceActive.as_view()), name='invoice_active'),
+    path('filtered_view/invoice_passive/', login_required(views.InvoicePassive.as_view()), name='invoice_passive'),
 ]
