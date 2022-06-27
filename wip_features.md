@@ -39,6 +39,8 @@ TO BE DONE:
 - sistemare campo di ricerca per data in aziende e fatture (partire da https://django-filter.readthedocs.io/en/stable/search.html?q=icontains&check_keywords=yes&area=default)
 - ~~sistemare UI pagine di ricerca~~
 - generare reportistica (https://rb.gy/exhd1o)
+- aggiungere nuovo db per gestire pagamenti
+- aggiungere vista per tenere traccia di pagamenti aperti
 
 
 doc reading list:
