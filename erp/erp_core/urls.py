@@ -8,6 +8,7 @@ app_name = 'erp_core'
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
+    path('help/', views.Help.as_view(), name='help'),
     path('login/', auth_views.LoginView.as_view(template_name='erp_core/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='erp_core/logout.html'), name='logout'),
     path('company_create/', login_required(views.CompanyCreate.as_view()), name='company_create'),

@@ -35,7 +35,7 @@ class InvoiceFilter(django_filters.FilterSet):
         }
         
 class PaymentFilter(django_filters.FilterSet):
-    """Allow search over the Payment DB"""
+    """Allow search over the payment DB"""
     class Meta:
         model = models.Payment
         fields = {

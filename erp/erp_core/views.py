@@ -8,6 +8,13 @@ from . import models, forms, filters
 class Home(View):
     def get(self, request):
         return render(request, 'erp_core/home.html')
+    
+class Help(View):
+    """Help page"""
+    template_name = 'erp_core/help.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
         
 # company management 
 
