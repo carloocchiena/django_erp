@@ -63,6 +63,30 @@ class InvoiceUpdate(UpdateView):
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list')
     
+# payment management #wip
+
+class PaymentCreate(CreateView):
+    """Create a new payment"""
+    model = models.Payment
+    form_class = forms.PaymentForm
+    success_url = reverse_lazy('erp_core:payment_list') 
+    
+class PaymentList(ListView):
+    """View all Payments"""
+    model = models.Payment
+    
+    # filter via query
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = filters.PaymentFilter(self.request.GET, queryset=self.get_queryset())
+        return context  
+    
+class PaymentUpdate(UpdateView):
+    """Update an Payment"""
+    model = models.Payment
+    form_class = forms.PaymentForm
+    success_url = reverse_lazy('erp_core:payment_list')
+    
 # pre-made filterd views
 
 class FilteredView(View):
@@ -87,6 +111,22 @@ class InvoicePassive(View):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context}) 
     
+class PaymentActive(View):
+    """Pre-made filter for active payments"""
+    model = models.Payment
+    template_name = 'erp_core/payment_active.html'
+    
+    def get(self, request):
+        context = self.model.objects.all().filter(kind='ACTIVE')
+        return render(request, self.template_name, {'context': context})
 
+class PaymentPassive(View):
+    """Pre-made filter for passive payments"""
+    model = models.Payment
+    template_name = 'erp_core/payment_passive.html'
+    
+    def get(self, request):
+        context = self.model.objects.all().filter(kind='PASSIVE')
+        return render(request, self.template_name, {'context': context}) 
     
     

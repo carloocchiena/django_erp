@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Welcome to sERPent</h2>
+            <h3>Full-Python ERP system (WIP!)</h3>
+            <p>
+                Jump abord!<br>
+                Need a new account? Contact your admin.
+            </p>
+        </div>
+
+        <div class="col">
+            <h3>Login</h3>
+            <form method="post" action="{% url 'erp_core:login' %}">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <label class="form-label">Username</label>
+                    <div class="form-group mx-auto mb-2">
+                        <input
+                        class="input"  
+                        type="text"
+                        id="id_username"
+                        name="username" 
+                        placeholder="Your username"
+                        maxlength="20" 
+                        required
+                        />
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-at"></i>
+                        </span>
+                    </div>
+
+                    <label class="form-label">Password</label>
+                    <div class="form-group mx-auto mb-2">
+                        <input
+                        class="input"  
+                        type="password" 
+                        id="id_password"
+                        name="password"
+                        placeholder="**********" 
+                        required
+                        />
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+
+                    <div class="error-message">
+                        {% if form.non_field_errors %} 
+                        
+                            {% for error in form.non_field_errors %}
+                                <p style="font-size: 13px;">
+                                    {{ error|escape }}
+                                </p>
+                            {% endfor %} 
+                        
+                        {% endif %}
+                    </div>
+                    
+                    <button type="submit" class="btn btn-info text-light">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+</div>
+
+{% endblock content %}

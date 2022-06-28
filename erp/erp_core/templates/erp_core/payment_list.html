@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Payment List</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+
+        <h2>&nbsp;Payment list</h2>
+
+        <div class="row">
+            <div class="col-5">
+                <h5 class="ms-2">Search via query</h5>
+                <form action="" method="get">
+                    <div class="row g-3">
+                        <div class="col ms-2">
+                            {{ filter.form.sender__name__icontains.label }}<br>
+                            {{ filter.form.sender__name__icontains }}<br>
+                            {{ filter.form.receiver__name__icontains.label }}<br>
+                            {{ filter.form.receiver__name__icontains }}<br>
+                            {{ filter.form.date__date.label }}<br>
+                            {{ filter.form.date__date }}<br>
+
+                        </div>
+                        <div class="col ms-2">
+                            {{ filter.form.amount__icontains.label }}<br>
+                            {{ filter.form.amount__icontains }}<br>
+                            {{ filter.form.kind__icontains.label }}<br>
+                            {{ filter.form.kind__icontains }}<br>
+                            {{ filter.form.notes__icontains.label }}<br>
+                            {{ filter.form.notes__icontains }}<br>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-info text-light mx-2", value="Search">
+                    <a href="{% url 'erp_core:payment_list' %}" class="btn text-light btn-info">Clean filters</a>
+                </form>
+                <br>
+
+                <div class="col-6">
+                    {% if filter.qs is None %}
+                        { filter.qs = object_list }
+                    {% endif %}
+                    <p>&nbsp;There are {{ filter.qs.count }} payments</p>
+                    {% for payment in filter.qs %} 
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <div class="col">
+                                <p class="card-text">
+                                    <strong>Payment nr:</strong> {{ payment.id }}<br>
+                                    From: {{ payment.sender }}<br>
+                                    To: {{ payment.receiver }}<br>
+                                    Kind: {{ payment.kind }}<br>
+                                    Amount: {{ payment.amount }}<br>
+                                    Issued: {{ payment.date|date:"Y-m-d" }}<br>
+                                    <a href="{% url 'erp_core:payment_update' payment.id %}" class="btn btn-info btn-sm text-light">
+                                        Update payment
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

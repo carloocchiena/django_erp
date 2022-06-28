@@ -184,3 +184,67 @@ class InvoiceForm(forms.ModelForm):
             ),
         }         
         
+class PaymentForm(forms.ModelForm):
+    """Manage payment creation"""
+    class Meta:
+        model = models.Payment
+        fields = '__all__'
+        widgets = {
+            'sender': forms.Select(attrs={
+                'label': 'Sender',
+                'class': 'form-control',
+                'name': 'sender',
+                'id': 'sender',
+                'placeholder': 'Enter sender name',
+                'required': True,
+                },
+            ),
+            'receiver': forms.Select(attrs={
+                'label': 'Receiver',
+                'class': 'form-control',
+                'name': 'receiver',
+                'id': 'receiver',
+                'placeholder': 'Enter receiver name',
+                'required': True,
+                },
+            ),
+            'date': forms.DateInput(attrs={
+                'label': 'Emission Date',
+                'class': 'form-control',
+                'name': 'date',
+                'id': 'date',
+                'placeholder': 'dd/mm/yyyy',
+                'required': True,
+                },
+            ),
+            'amount': forms.NumberInput(attrs={
+                'label': 'Invoice Amount',
+                'class': 'form-control',
+                'name': 'amount',
+                'id': 'amount',
+                'placeholder': 'Enter amount in euros, ex: 5000,12',
+                'required': True,
+                },
+            ),
+            'kind': forms.Select(attrs={
+                'label': 'Invoice Type',
+                'class': 'form-control',
+                'name': 'kind',
+                'id': 'kind',
+                'placeholder': 'Enter invoice type',
+                'required': True,
+                },
+            ),
+            'notes': forms.Textarea(attrs={
+                'label': 'Notes',
+                'class': 'form-control',
+                'name': 'notes',
+                'id': 'notes',
+                'rows': 2, 
+                'cols': 10, 
+                'placeholder': 'Additional notes',
+                'required': False,
+                },
+            ),
+        }         
+        

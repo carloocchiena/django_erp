@@ -21,6 +21,10 @@
                         <button class="btn btn-info text-light mb-3">Add a new invoice</button>
                     </a>
 
+                    <a href="{% url 'erp_core:payment_create' %}"
+                        <button class="btn btn-info text-light mb-3">Add a new payment</button>
+                    </a>
+
                     <a href="http://127.0.0.1:8000/admin/"
                         <button class="btn btn-info text-light mb-3">TEMP ADMIN</button>
                     </a>
@@ -33,6 +37,10 @@
 
                         <a href="{% url 'erp_core:invoice_list' %}"
                             <button class="btn btn-info text-light mb-3">Invoice list</button>
+                        </a>
+
+                        <a href="{% url 'erp_core:payment_list' %}"
+                            <button class="btn btn-info text-light mb-3">Payment list</button>
                         </a>
 
                         <a href="{% url 'erp_core:filtered_view' %}"

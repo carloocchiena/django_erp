@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Payment List</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+
+        <h2>&nbsp;Active Payments list</h2>
+
+        <div class="row">
+            <div class="col-6">
+                <p>&nbsp;There are {{ context.count }} payments</p>
+                {% for payment in context %} 
+                <div class="card m-2">
+                    <div class="card-body">
+                        <div class="col">
+                            <p class="card-text">
+                                <strong>Payment nr:</strong> {{ payment.id }}<br>
+                                From: {{ payment.sender }}<br>
+                                To: {{ payment.receiver }}<br>
+                                Kind: {{ payment.kind }}<br>
+                                Amount: {{ payment.amount }}<br>
+                                Issued: {{ payment.date|date:"Y-m-d" }}<br>
+                                <a href="{% url 'erp_core:payment_update' payment.id %}" class="btn btn-info btn-sm text-light">
+                                    Update payment
+                                </a> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

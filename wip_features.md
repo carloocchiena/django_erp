@@ -34,16 +34,15 @@ TO BE DONE:
 - gestire vista fatture scadute e non scadute
 - ~~gestire vista fatture attive e passive~~
 - ~~aggiungere vista aggiornamento aziende~~
-- sistemare flusso login-logout in ogni sua parte (template, view)
+- ~~sistemare flusso login-logout in ogni sua parte (template, view)~~
 - ~~gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering, https://django-filter.readthedocs.io/en/main/guide/usage.html e questo fatto veramente bene, passo passo https://www.youtube.com/watch?v=nle3u6Ww6Xk)~~
-- sistemare campo di ricerca per data in aziende e fatture (partire da https://django-filter.readthedocs.io/en/stable/search.html?q=icontains&check_keywords=yes&area=default)
+- ~~sistemare campo di ricerca per data in aziende e fatture (partire da https://django-filter.readthedocs.io/en/stable/search.html?q=icontains&check_keywords=yes&area=default)~~
 - ~~sistemare UI pagine di ricerca~~
 - generare reportistica (https://rb.gy/exhd1o)
-- aggiungere nuovo db per gestire pagamenti
+- ~~aggiungere nuovo db per gestire pagamenti~~
+- aggiungere filtro per pagamenti passivi e attivi
 - aggiungere vista per tenere traccia di pagamenti aperti
 
 
 doc reading list:
-- https://docs.djangoproject.com/en/4.0/ref/models/querysets/#field-lookups
-- https://docs.djangoproject.com/en/4.0/ref/models/querysets/#std-fieldlookup-icontains
-- https://docs.djangoproject.com/en/4.0/topics/pagination/ 
+

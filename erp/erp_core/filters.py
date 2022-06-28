@@ -34,3 +34,16 @@ class InvoiceFilter(django_filters.FilterSet):
             'notes': ['icontains'], 
         }
         
+class PaymentFilter(django_filters.FilterSet):
+    """Allow search over the Payment DB"""
+    class Meta:
+        model = models.Payment
+        fields = {
+            'sender__name': ['icontains'], 
+            'receiver__name': ['icontains'],
+            'date': ['date'], 
+            'amount': ['icontains'], 
+            'kind': ['icontains'], 
+            'notes': ['icontains'], 
+        }
+        

@@ -8,7 +8,8 @@ class ChoiceEnum(Enum):
         return [(choice.name, choice.value) for choice in cls]
     
 class Company(models.Model):
-    """Create company profile and their attributes"""   
+    """Manage company profile and their attributes"""   
+    
     class Industry(ChoiceEnum):
         """Create industry choices"""
         ENERGY = 'Energy'
@@ -34,9 +35,10 @@ class Company(models.Model):
         return self.name.upper()
     
 class Invoice(models.Model):
-    """Create invoice and their attributes"""
+    """Manage invoice and their attributes"""
+    
     class Kind(ChoiceEnum):
-        """Create industry choices"""
+        """Create invoice statuses"""
         ACTIVE = 'Active'
         PASSIVE = 'Passive'
         CREDIT = 'Credit Note'
@@ -51,7 +53,7 @@ class Invoice(models.Model):
     number = models.PositiveIntegerField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     kind = models.CharField(max_length=10, choices=Kind.choices(), default=Kind.choices()[0][0])
-    due_date = models.DateTimeField(auto_now_add=False)#DateField()  # da testare
+    due_date = models.DateTimeField(auto_now_add=False)
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
     
@@ -59,4 +61,26 @@ class Invoice(models.Model):
         ordering = ['date']
     
     def __str__(self):
-        return f"{self.sender}, {self.amount}"    
+        return f"{self.sender}, {self.amount}"  
+    
+class Payment(models.Model):
+    """Manage incoming and outcoming payments"""
+    
+    class Kind(ChoiceEnum):
+        """Create payment statuses"""
+        ACTIVE = 'Active'
+        PASSIVE = 'Passive'
+    
+    sender = models.ForeignKey(Company, related_name="payment_sender", on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Company, related_name="payment_receiver", on_delete=models.CASCADE)
+    kind = models.CharField(max_length=10, choices=Kind.choices(), default=Kind.choices()[0][0])
+    date = models.DateTimeField(auto_now_add=False)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    notes = models.TextField(blank=True, null=True)
+    
+    class Meta:
+        ordering = ['date']
+    
+    def __str__(self):
+        return f"{self.sender}, {self.amount}"
+    
