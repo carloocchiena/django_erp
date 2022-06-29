@@ -40,8 +40,15 @@ TO BE DONE:
 - ~~sistemare UI pagine di ricerca~~
 - generare reportistica (https://rb.gy/exhd1o)
 - ~~aggiungere nuovo db per gestire pagamenti~~
-- aggiungere filtro per pagamenti passivi e attivi
-- aggiungere vista per tenere traccia di pagamenti aperti
+- ~~aggiungere filtro per pagamenti passivi e attivi~~
+- aggiungere vista per tenere traccia di pagamenti aperti (interessante https://stackoverflow.com/questions/72782959/how-to-sum-with-condition-in-a-django-queryset)
+
+TRACCIA PER VISTA PAGAMENTI OPEN
+- iniziamo da attivo
+- html table con:
+    - nome ctp
+    - totale pagamenti effettuati da ctp (capire come filtrare in modo smart)
+    - totale fatture emesse vs controparte (capire anche qui come filtrare in modo smart)
 
 
 doc reading list:
