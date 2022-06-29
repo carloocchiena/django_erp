@@ -50,6 +50,8 @@ TRACCIA PER VISTA PAGAMENTI OPEN
     - totale pagamenti effettuati da ctp (capire come filtrare in modo smart)
     - totale fatture emesse vs controparte (capire anche qui come filtrare in modo smart)
 
+    capiamo a) cosa deve ritornare b) come, lavorando sia sulla funzione che sulla vista che sul template
+
 
 doc reading list:
 

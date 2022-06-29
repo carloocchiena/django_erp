@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from . import models, forms, filters
+from . import models, forms, filters, functions
 
 class Home(View):
     def get(self, request):
@@ -136,4 +136,13 @@ class PaymentPassive(View):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context}) 
     
+# wip for the open payment view
+
+class ActiveCheck(View):
+    """View to show the credit balance"""
+    template_name = 'erp_core/active_check.html'
+    
+    def get(self, request):
+        context = functions.sum_active_invoices()
+        return render(request, self.template_name, {'context': context})
     
