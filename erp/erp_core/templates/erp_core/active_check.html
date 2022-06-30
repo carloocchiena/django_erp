@@ -12,7 +12,7 @@
         <h2>&nbsp;Active Credit Check</h2>
 
         {% for item in context %} 
-            {{ item|slice:"0" }}
+            {{ item.receiver }}
         {% endfor %}
         {{ context.count }}
 
