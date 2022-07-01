@@ -44,7 +44,6 @@ class CompanyUpdate(UpdateView):
     model = models.Company
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list')
-    
 
 # invoice management
     
@@ -70,7 +69,7 @@ class InvoiceUpdate(UpdateView):
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list')
     
-# payment management #wip
+# payment management
 
 class PaymentCreate(CreateView):
     """Create a new payment"""
