@@ -11,8 +11,8 @@
 
         <h2>&nbsp;Active Credit Check</h2>
 
-        {% for item in context %} 
-            {{ item.receiver }}
+        {% for company, value in context.items %} 
+            {{ company }} {{ value }}
         {% endfor %}
         {{ context.count }}
 
