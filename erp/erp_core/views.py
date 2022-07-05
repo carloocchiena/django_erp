@@ -135,7 +135,7 @@ class PaymentPassive(View):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context}) 
     
-# wip for the open payment view
+# credit management
 
 class ActiveCheck(View):
     """View to show the credit balance"""
