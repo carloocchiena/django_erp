@@ -14,7 +14,15 @@
         {% for company, value in context.items %} 
             {{ company }} {{ value }}
         {% endfor %}
-        {{ context.count }}
+        <br><br>
+        {% for company, value in context.items %} 
+            {{ company }}:<br>
+            {% for bill, payment in value.items %}
+                {{ bill }}, {{ payment }}<br>
+            {% endfor %}
+        {% endfor %}
+
+        
 
         {% comment %} <div class="row">
             <div class="col-6">
