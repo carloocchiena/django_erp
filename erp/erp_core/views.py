@@ -142,6 +142,6 @@ class ActiveCheck(View):
     template_name = 'erp_core/active_check.html'
     
     def get(self, request):
-        context = functions.active_credit_calculator()
+        context = functions.credit_calculator('ACTIVE')
         return render(request, self.template_name, {'context': context})
     

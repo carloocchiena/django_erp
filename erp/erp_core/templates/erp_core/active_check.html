@@ -11,43 +11,38 @@
 
         <h2>&nbsp;Active Credit Check</h2>
 
-        {% for company, value in context.items %} 
-            {{ company }} {{ value }}
-        {% endfor %}
-        <br><br>
-        {% for company, value in context.items %} 
-            {{ company }}:<br>
-            {% for bill, payment in value.items %}
-                {{ bill }}, {{ payment }}<br>
-            {% endfor %}
-        {% endfor %}
-
-        
-
-        {% comment %} <div class="row">
-            <div class="col-6">
-                <p>&nbsp;There are {{ context.count }} payments</p>
-                {% for payment in context %} 
-                <div class="card m-2">
-                    <div class="card-body">
-                        <div class="col">
-                            <p class="card-text">
-                                <strong>Payment nr:</strong> {{ payment.id }}<br>
-                                From: {{ payment.sender }}<br>
-                                To: {{ payment.receiver }}<br>
-                                Kind: {{ payment.kind }}<br>
-                                Amount: {{ payment.amount }}<br>
-                                Issued: {{ payment.date|date:"Y-m-d" }}<br>
-                                <a href="{% url 'erp_core:payment_update' payment.id %}" class="btn btn-info btn-sm text-light">
-                                    Update payment
-                                </a> 
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Bills</th>
+                <th scope="col">Payments</th>
+                <th scope="col">Outstanding</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company, value in context.items %}
+                <tr>
+                    <td>{{ company }}</td>
+                    {% for bill, payment in value.items %}
+                        <td>€ {{ payment }}</td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </div>
-        </div> {% endcomment %}
+            </tbody>
+        </table>
     </div>
     
 {% endblock content %}
+
+
+{% comment %} 
+# this snippet is used to check just the raw value returned from the function,
+# if needed 
+{% for company, value in context.items %} 
+    {{ company }}:<br>
+    {% for bill, payment in value.items %}
+        {{ bill }}: {{ payment }}<br>
+    {% endfor %}
+{% endfor %} 
+{% endcomment %}

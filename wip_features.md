@@ -49,7 +49,7 @@ TRACCIA PER VISTA PAGAMENTI OPEN
     - nome ctp
     - totale pagamenti effettuati da ctp 
     - totale fatture emesse vs controparte 
-     devo fare su la tabella 
+     Bene direi che ho fatto il grosso ora da limare e ripulire
 
 
 
