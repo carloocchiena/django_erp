@@ -47,9 +47,12 @@ TRACCIA PER VISTA PAGAMENTI OPEN
 - iniziamo da attivo
 - html table con:
     - nome ctp
-    - totale pagamenti effettuati da ctp (capire come filtrare in modo smart)
-    - totale fatture emesse vs controparte (capire anche qui come filtrare in modo smart)
+    - totale pagamenti effettuati da ctp 
+    - totale fatture emesse vs controparte 
+     Bene direi che ho fatto il grosso ora da limare e ripulire
 
 
-doc reading list:
+
+docs & refs:
+- https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
 

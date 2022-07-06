@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Credit Check</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+
+        <h2>&nbsp;Active Credit Check</h2>
+
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Bills</th>
+                <th scope="col">Payments</th>
+                <th scope="col">Outstanding</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company, value in context.items %}
+                <tr>
+                    <td>{{ company }}</td>
+                    {% for bill, payment in value.items %}
+                        <td>€ {{ payment }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock content %}
+
+
+{% comment %} 
+# this snippet is used to check just the raw value returned from the function,
+# if needed 
+{% for company, value in context.items %} 
+    {{ company }}:<br>
+    {% for bill, payment in value.items %}
+        {{ bill }}: {{ payment }}<br>
+    {% endfor %}
+{% endfor %} 
+{% endcomment %}

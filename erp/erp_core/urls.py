@@ -26,4 +26,5 @@ urlpatterns = [
     path('filtered_view/invoice_passive/', login_required(views.InvoicePassive.as_view()), name='invoice_passive'),
     path('filtered_view/payment_active/', login_required(views.PaymentActive.as_view()), name='payment_active'),
     path('filtered_view/payment_passive/', login_required(views.PaymentPassive.as_view()), name='payment_passive'),
+    path('filtered_view/active_check/', login_required(views.ActiveCheck.as_view()), name='active_check'),
 ]
