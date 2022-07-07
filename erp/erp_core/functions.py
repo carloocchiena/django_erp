@@ -2,12 +2,19 @@ from django.db.models import Sum
 
 from . import models
 
-def kind_checker(kind:str) -> str:
-    """Check formal correctness of input values"""
+def kind_list_updater() -> list:
+    """Create the list of valid kind type from models.py"""
     valid_kind = []
     
     for kind in models.Payment.Kind.choices():
         valid_kind.append(kind[0])
+
+    return valid_kind    
+
+def kind_checker(kind:str) -> str:
+    """Check formal correctness of input values"""
+    
+    valid_kind = kind_list_updater()
     
     if kind not in valid_kind:
         kind = 'ACTIVE'
@@ -28,22 +35,23 @@ def credit_calculator(kind:str='ACTIVE') -> dict:
     RETURN dictionary
     """
     payment_dictionary = {}
-    kind = kind_checker(kind)[0]
-    initiator = kind_checker(kind)[1]
-    
-    print((models.Payment.Kind.choices()))
-    print(kind in list(models.Payment.Kind.choices()[:]))
+    kind, initiator = kind_checker(kind)
     
     company_pks = models.Invoice.objects.all().filter(kind=kind).values_list(initiator, flat=True)
     company_list = list(models.Company.objects.all().filter(pk__in=company_pks))
     
     for company in company_list:
-        payment = models.Payment.objects.all().filter(kind=kind, sender__name=company).aggregate(Sum('amount'))['amount__sum'] 
-        invoice = models.Invoice.objects.all().filter(kind=kind, receiver__name=company).aggregate(Sum('amount'))['amount__sum']
-        
+        if kind == 'ACTIVE':
+            payment = models.Payment.objects.all().filter(kind=kind, sender__name=company).aggregate(Sum('amount'))['amount__sum'] 
+            invoice = models.Invoice.objects.all().filter(kind=kind, receiver__name=company).aggregate(Sum('amount'))['amount__sum']
+        elif kind == 'PASSIVE':
+            payment = models.Payment.objects.all().filter(kind=kind, receiver__name=company).aggregate(Sum('amount'))['amount__sum'] 
+            invoice = models.Invoice.objects.all().filter(kind=kind, sender__name=company).aggregate(Sum('amount'))['amount__sum']
+    
         if payment is None:
             payment = 0
-        elif invoice is None:
+        
+        if invoice is None:
             invoice = 0
         
         payment_dictionary[company] = {'Bills':invoice, 'Payment':payment, 'Outstanding':invoice - payment}
