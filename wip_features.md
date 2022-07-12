@@ -47,7 +47,7 @@ TO BE DONE:
 - generare reportistica: 
     - https://rb.gy/exhd1o
     - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
-    - cosa è meglio, pdf o csv? https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ 
+    - partiamo intanto dal CSV https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ , direi di creare una funzione che, preso un oggetto, ne ritorna il csv con il nome dell'oggetto, così la possiamo chiamare ovunque, vediamo. Dovrà anche essere un pulsante addizionale immagino sulle varie pagine.
 
 
 docs & refs:
