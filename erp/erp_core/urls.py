@@ -28,6 +28,6 @@ urlpatterns = [
     path('filtered_view/invoice_passive_overdue/', login_required(views.InvoicePassiveOverdue.as_view()), name='invoice_passive_overdue'),
     path('filtered_view/payment_active/', login_required(views.PaymentActive.as_view()), name='payment_active'),
     path('filtered_view/payment_passive/', login_required(views.PaymentPassive.as_view()), name='payment_passive'),
-    path('filtered_view/active_check/', login_required(views.ActiveCheck.as_view()), name='active_check'),
-    path('filtered_view/passive_check/', login_required(views.PassiveCheck.as_view()), name='passive_check'),
+    path('filtered_view/check_active/', login_required(views.CheckActive.as_view()), name='check_active'),
+    path('filtered_view/check_passive/', login_required(views.CheckPassive.as_view()), name='check_passive'),
 ]

@@ -157,17 +157,17 @@ class PaymentPassive(View):
 
 # credit management
 
-class ActiveCheck(View):
+class CheckActive(View):
     """View to show the credit balance"""
-    template_name = 'erp_core/active_check.html'
+    template_name = 'erp_core/check_active.html'
     
     def get(self, request):
         context = functions.credit_calculator('ACTIVE')
         return render(request, self.template_name, {'context': context})
     
-class PassiveCheck(View):
+class CheckPassive(View):
     """View to show the credit balance"""
-    template_name = 'erp_core/passive_check.html'
+    template_name = 'erp_core/check_passive.html'
     
     def get(self, request):
         context = functions.credit_calculator('PASSIVE')
