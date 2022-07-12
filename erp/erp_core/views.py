@@ -96,6 +96,7 @@ class PaymentUpdate(UpdateView):
 # pre-made filterd views
 
 class FilteredView(View):
+    """Main page for all the filters"""
     def get(self, request):
         return render(request, 'erp_core/filtered_view.html')
 
@@ -107,6 +108,15 @@ class InvoiceActive(View):
     def get(self, request):
         context = self.model.objects.all().filter(kind='ACTIVE')
         return render(request, self.template_name, {'context': context})
+    
+class InvoiceActiveOverdue(View):
+    """Pre-made filter for overdue active invoices"""
+    model = models.Invoice
+    template_name = 'erp_core/invoice_active_overdue.html'
+    
+    def get(self, request):
+        context = self.model.objects.all().filter(kind='ACTIVE', status='UNPAID')
+        return render(request, self.template_name, {'context': context})
 
 class InvoicePassive(View):
     """Pre-made filter for passive invoices"""
@@ -116,6 +126,15 @@ class InvoicePassive(View):
     def get(self, request):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context}) 
+    
+class InvoicePassiveOverdue(View):
+    """Pre-made filter for overdue active invoices"""
+    model = models.Invoice
+    template_name = 'erp_core/invoice_passive_overdue.html'
+    
+    def get(self, request):
+        context = self.model.objects.all().filter(kind='PASSIVE', status='UNPAID')
+        return render(request, self.template_name, {'context': context})
     
 class PaymentActive(View):
     """Pre-made filter for active payments"""
@@ -135,6 +154,7 @@ class PaymentPassive(View):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context}) 
     
+
 # credit management
 
 class ActiveCheck(View):

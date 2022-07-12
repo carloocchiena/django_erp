@@ -31,26 +31,23 @@ TO BE DONE:
 - ~~fix trattino tra i btn della home~~
 - fix la validazione dei dati dentro i form
 - ~~fix i valori di default nei menu dropdown~~
-- gestire vista fatture scadute e non scadute
+- ~~gestire vista fatture scadute e non scadute~~
 - ~~gestire vista fatture attive e passive~~
 - ~~aggiungere vista aggiornamento aziende~~
 - ~~sistemare flusso login-logout in ogni sua parte (template, view)~~
 - ~~gestire \ integrare search bar (https://stackoverflow.com/questions/57554020/django-search-form-for-filtering, https://django-filter.readthedocs.io/en/main/guide/usage.html e questo fatto veramente bene, passo passo https://www.youtube.com/watch?v=nle3u6Ww6Xk)~~
 - ~~sistemare campo di ricerca per data in aziende e fatture (partire da https://django-filter.readthedocs.io/en/stable/search.html?q=icontains&check_keywords=yes&area=default)~~
 - ~~sistemare UI pagine di ricerca~~
-- generare reportistica (https://rb.gy/exhd1o)
 - ~~aggiungere nuovo db per gestire pagamenti~~
 - ~~aggiungere filtro per pagamenti passivi e attivi~~
 - aggiungere vista per tenere traccia di pagamenti aperti (interessante https://stackoverflow.com/questions/72782959/how-to-sum-with-condition-in-a-django-queryset)
+- ~~ vista dei pagamenti scaduti attivi e passivi ~~
+- razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
 
-TRACCIA PER VISTA PAGAMENTI OPEN
-- iniziamo da attivo
-- html table con:
-    - nome ctp
-    - totale pagamenti effettuati da ctp 
-    - totale fatture emesse vs controparte 
-     Bene direi che ho fatto il grosso ora da limare e ripulire
-
+- generare reportistica: 
+    - https://rb.gy/exhd1o
+    - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
+    - cosa è meglio, pdf o csv? https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ 
 
 
 docs & refs:
