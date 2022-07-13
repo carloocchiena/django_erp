@@ -53,7 +53,7 @@ class InvoiceCreate(CreateView):
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list') 
     
-class InvoiceList(ListView):
+class InvoiceList(ListView, functions.CSVResponseMixin): #### nel caso da uccidere la hierarchy con csv gen
     """View all invoices"""
     model = models.Invoice
     
@@ -172,4 +172,3 @@ class CheckPassive(View):
     def get(self, request):
         context = functions.credit_calculator('PASSIVE')
         return render(request, self.template_name, {'context': context})
-    

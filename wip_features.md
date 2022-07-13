@@ -44,12 +44,15 @@ TO BE DONE:
 - ~~ vista dei pagamenti scaduti attivi e passivi ~~
 - razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
 
-- generare reportistica: 
+- generare reportistica CSV: 
     - https://rb.gy/exhd1o
     - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
     - partiamo intanto dal CSV https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ , direi di creare una funzione che, preso un oggetto, ne ritorna il csv con il nome dell'oggetto, così la possiamo chiamare ovunque, vediamo. Dovrà anche essere un pulsante addizionale immagino sulle varie pagine.
+    - qui una valida traccia https://studygyaan.com/django/how-to-export-csv-file-with-django 
+    - anche qui fatta con CBV https://stackoverflow.com/questions/16286666/send-a-file-through-django-class-based-views 
+    - mi sembra dura, vediamo: https://www.youtube.com/watch?v=ggz8wkjljaM 
 
 
-docs & refs:
+DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
 
