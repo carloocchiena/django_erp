@@ -50,7 +50,7 @@ TO BE DONE:
     - partiamo intanto dal CSV https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ , direi di creare una funzione che, preso un oggetto, ne ritorna il csv con il nome dell'oggetto, così la possiamo chiamare ovunque, vediamo. Dovrà anche essere un pulsante addizionale immagino sulle varie pagine.
     - qui una valida traccia https://studygyaan.com/django/how-to-export-csv-file-with-django 
     - anche qui fatta con CBV https://stackoverflow.com/questions/16286666/send-a-file-through-django-class-based-views 
-    - mi sembra dura, vediamo: https://www.youtube.com/watch?v=ggz8wkjljaM 
+    - ho trovato una possibile strada, anche capendo come generare url dinamici descrittivi, vediamo come proseguire
 
 
 DOCS & REFS:

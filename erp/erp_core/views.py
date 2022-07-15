@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -53,12 +53,15 @@ class InvoiceCreate(CreateView):
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list') 
     
-class InvoiceList(ListView, functions.CSVResponseMixin): #### nel caso da uccidere la hierarchy con csv gen
+class InvoiceList(ListView): # ragionare, fa qualcosa ma non emette file comunque non è malaccio, ci siamo
     """View all invoices"""
-    model = models.Invoice
-    
+    model = models.Invoice   
+        
     # filter via query
     def get_context_data(self, **kwargs):
+        if 'csv_export' in self.request.GET:
+            functions.generate_csv(self.request, self.object_list)
+        
         context = super().get_context_data(**kwargs)
         context['filter'] = filters.InvoiceFilter(self.request.GET, queryset=self.get_queryset())
         return context  
