@@ -1,7 +1,6 @@
 import csv # per csv export, tbc
 from django.db.models import Sum
 from django.http import HttpResponse # per csv export, tbc
-from django.utils.text import slugify # per csv export, tbc
 
 from . import models
 
