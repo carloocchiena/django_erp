@@ -51,6 +51,8 @@ TO BE DONE:
     - qui una valida traccia https://studygyaan.com/django/how-to-export-csv-file-with-django 
     - anche qui fatta con CBV https://stackoverflow.com/questions/16286666/send-a-file-through-django-class-based-views 
     - ho trovato una possibile strada, anche capendo come generare url dinamici descrittivi, vediamo come proseguire
+    - ok ok ci sono, devo discriminare qui creando un url dinamico che in base al contenuto passato, genera la lista fatture o aziende (e via di conseguenza) https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template 
+    - ripulire poi file views e functions dopo averci messo mano
 
 
 DOCS & REFS:

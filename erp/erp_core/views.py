@@ -59,11 +59,14 @@ class InvoiceList(ListView): # ragionare, fa qualcosa ma non emette file comunqu
         
     # filter via query
     def get_context_data(self, **kwargs):
-        if 'csv_export' in self.request.GET:
-            functions.generate_csv(self.request, self.object_list)
-        
         context = super().get_context_data(**kwargs)
         context['filter'] = filters.InvoiceFilter(self.request.GET, queryset=self.get_queryset())
+        
+        # questo blocco realisticamente può essere cancellato, deve essere una funzione a se stante dire, vedere ultimo link in wip.
+        if 'csv_export' in self.request.GET:
+            functions.generate_csv(self.request, self.object_list)
+            return context 
+        
         return context  
     
 class InvoiceUpdate(UpdateView):

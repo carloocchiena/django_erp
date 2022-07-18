@@ -80,11 +80,13 @@ def generate_csv(request, context) -> csv:
     
     writer = csv.writer(response)
     
+    writer.writerow(['a', 'b', 'c', 'd'])
+    
     for item in context:
         writer.writerow([item])
         print(item)
     
-    print('pippo')
+    print(response)
     return response
     
 #### END WIP CSV
