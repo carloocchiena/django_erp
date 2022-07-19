@@ -32,7 +32,7 @@ class Company(models.Model):
         verbose_name_plural = "companies"
 
     def __str__(self):
-        return self.name.upper()
+        return f"Name: {self.name.upper()}, City: {self.city}, web: {self.website}"
     
 class Invoice(models.Model):
     """Manage invoice and their attributes"""
@@ -61,7 +61,7 @@ class Invoice(models.Model):
         ordering = ['date']
     
     def __str__(self):
-        return f"{self.sender}, {self.amount}"  
+        return f"Sender: {self.sender}, Receiver:{self.receiver}, Amount:{self.amount}, Due_date:{self.due_date}"  
     
 class Payment(models.Model):
     """Manage incoming and outcoming payments"""

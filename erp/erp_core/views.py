@@ -1,3 +1,6 @@
+import csv
+
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
@@ -53,7 +56,7 @@ class InvoiceCreate(CreateView):
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list') 
     
-class InvoiceList(ListView): # ragionare, fa qualcosa ma non emette file comunque non è malaccio, ci siamo
+class InvoiceList(ListView):
     """View all invoices"""
     model = models.Invoice   
         
@@ -61,12 +64,6 @@ class InvoiceList(ListView): # ragionare, fa qualcosa ma non emette file comunqu
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = filters.InvoiceFilter(self.request.GET, queryset=self.get_queryset())
-        
-        # questo blocco realisticamente può essere cancellato, deve essere una funzione a se stante dire, vedere ultimo link in wip.
-        if 'csv_export' in self.request.GET:
-            functions.generate_csv(self.request, self.object_list)
-            return context 
-        
         return context  
     
 class InvoiceUpdate(UpdateView):
@@ -158,8 +155,7 @@ class PaymentPassive(View):
     
     def get(self, request):
         context = self.model.objects.all().filter(kind='PASSIVE')
-        return render(request, self.template_name, {'context': context}) 
-    
+        return render(request, self.template_name, {'context': context})    
 
 # credit management
 
@@ -178,3 +174,29 @@ class CheckPassive(View):
     def get(self, request):
         context = functions.credit_calculator('PASSIVE')
         return render(request, self.template_name, {'context': context})
+
+# export to CSV
+class CsvExport(View):
+    """Generate a csv file of the context object"""
+    template_name = 'erp_core/csv_export.html'
+    
+    def get(self, request) -> csv:
+        response = HttpResponse(
+            content_type='text/csv',
+            headers={'Content-Disposition':'attachment; filename="csv_detail.csv"'},
+        )
+        
+        # this allows to scale on many other CSV export just managing the url param
+        if 'invoice' in self.request.GET:
+            model = models.Invoice.objects.all()
+        if 'company' in self.request.GET:
+            model = models.Company.objects.all()     
+        
+        writer = csv.writer(response)
+        
+        for item in model:
+            writer.writerow([item])
+            print(item)
+            
+        return response
+    

@@ -30,4 +30,5 @@ urlpatterns = [
     path('filtered_view/payment_passive/', login_required(views.PaymentPassive.as_view()), name='payment_passive'),
     path('filtered_view/check_active/', login_required(views.CheckActive.as_view()), name='check_active'),
     path('filtered_view/check_passive/', login_required(views.CheckPassive.as_view()), name='check_passive'),
+    path('csv_export/', login_required(views.CsvExport.as_view()), name='csv_export'),
 ]

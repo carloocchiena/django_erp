@@ -1,6 +1,4 @@
-import csv # per csv export, tbc
 from django.db.models import Sum
-from django.http import HttpResponse # per csv export, tbc
 
 from . import models
 
@@ -67,29 +65,7 @@ def credit_calculator(kind:str='ACTIVE') -> dict:
         
         payment_dictionary[company] = {'Bills':invoice, 'Payment':payment, 'Outstanding':invoice - payment}
     
-    return payment_dictionary
-      
-#### WIP CSV TBDELETED      
-# wip non so bene come chiamarla solo da funzione 
-def generate_csv(request, context) -> csv:
-    """Generate a csv file of the context object"""
-    response = HttpResponse(
-        content_type='text/csv',
-        headers={'Content-Disposition':'attachment; filename="csv_detail.csv"'},
-    )
-    
-    writer = csv.writer(response)
-    
-    writer.writerow(['a', 'b', 'c', 'd'])
-    
-    for item in context:
-        writer.writerow([item])
-        print(item)
-    
-    print(response)
-    return response
-    
-#### END WIP CSV
+    return payment_dictionary  
 
 if __name__ == '__main__':
     credit_calculator()
