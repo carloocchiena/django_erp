@@ -40,21 +40,17 @@ TO BE DONE:
 - ~~sistemare UI pagine di ricerca~~
 - ~~aggiungere nuovo db per gestire pagamenti~~
 - ~~aggiungere filtro per pagamenti passivi e attivi~~
-- aggiungere vista per tenere traccia di pagamenti aperti (interessante https://stackoverflow.com/questions/72782959/how-to-sum-with-condition-in-a-django-queryset)
+- ~~aggiungere vista per tenere traccia di pagamenti aperti (interessante https://stackoverflow.com/questions/72782959how-to-sum-with-condition-in-a-django-queryset)~~
 - ~~ vista dei pagamenti scaduti attivi e passivi ~~
 - razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
 
-- generare reportistica CSV: 
-    - https://rb.gy/exhd1o
-    - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
-    - partiamo intanto dal CSV https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ , direi di creare una funzione che, preso un oggetto, ne ritorna il csv con il nome dell'oggetto, così la possiamo chiamare ovunque, vediamo. Dovrà anche essere un pulsante addizionale immagino sulle varie pagine.
-    - qui una valida traccia https://studygyaan.com/django/how-to-export-csv-file-with-django 
-    - anche qui fatta con CBV https://stackoverflow.com/questions/16286666/send-a-file-through-django-class-based-views 
-    - ho trovato una possibile strada, anche capendo come generare url dinamici descrittivi, vediamo come proseguire
-    - ok ok ci sono, devo discriminare qui creando un url dinamico che in base al contenuto passato, genera la lista fatture o aziende (e via di conseguenza) https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template 
-    - ripulire poi file views e functions dopo averci messo mano
+- ~~generare reportistica CSV:~~ 
+    - ~~partiamo intanto dal CSV https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ , direi di creare una funzione che, preso un ~~~~oggetto, ne ritorna il csv con il nome dell'oggetto, così la possiamo chiamare ovunque, vediamo. Dovrà anche essere un pulsante addizionale ~~~immagino sulle varie pagine.~~
+     - ~~ok ok ci sono, devo discriminare qui creando un url dinamico che in base al contenuto passato, genera la lista fatture o aziende (e via di conseguenza) https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template ~~
+    - ~~ripulire poi file views e functions dopo averci messo mano~~
 
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
+- https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
 

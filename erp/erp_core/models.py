@@ -32,7 +32,7 @@ class Company(models.Model):
         verbose_name_plural = "companies"
 
     def __str__(self):
-        return f"Name: {self.name.upper()}, City: {self.city}, web: {self.website}"
+        return self.name.upper()
     
 class Invoice(models.Model):
     """Manage invoice and their attributes"""
