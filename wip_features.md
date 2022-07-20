@@ -4,6 +4,7 @@ USERS:
 DB:
 - azienda (nome, partita iva, settore, città, indirizzo, cap, provincia, nazione, sito web, note)
 - fattura (emittente, destinatario, data, numero, importo, tipologia di fattura, scadenza, stato pagamento, note)
+- merci (nome, quantità, da riordinare o meno)
 
 HOME:
 - scegli tra le diverse funzioni possibili, logout, help
@@ -43,14 +44,21 @@ TO BE DONE:
 - ~~aggiungere vista per tenere traccia di pagamenti aperti (interessante https://stackoverflow.com/questions/72782959how-to-sum-with-condition-in-a-django-queryset)~~
 - ~~ vista dei pagamenti scaduti attivi e passivi ~~
 - razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
-
 - ~~generare reportistica CSV:~~ 
-    - ~~partiamo intanto dal CSV https://docs.djangoproject.com/en/4.0/howto/outputting-csv/ , direi di creare una funzione che, preso un ~~~~oggetto, ne ritorna il csv con il nome dell'oggetto, così la possiamo chiamare ovunque, vediamo. Dovrà anche essere un pulsante addizionale ~~~immagino sulle varie pagine.~~
-     - ~~ok ok ci sono, devo discriminare qui creando un url dinamico che in base al contenuto passato, genera la lista fatture o aziende (e via di conseguenza) https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template ~~
-    - ~~ripulire poi file views e functions dopo averci messo mano~~
+- gestione merci e magazzino
+    - generare modello per le merci 
+    - generare vista per inserirle ex novo
+    - generare vista per modificarle 
+    - generare funzione per riordinarle
+    - possibili spunti: https://arbcoms.com/store-management-system/
+    - capire come si riflette su fatture
+
+
+
 
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
 - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
+- https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template
 

@@ -83,4 +83,13 @@ class Payment(models.Model):
     
     def __str__(self):
         return f"{self.sender}, {self.amount}"
+
+# wip    
+class Item(models.Model):
+    """Manage physical goods management"""
+    name = models.CharField(max_length=30)
+    quantity = models.IntegerField()
+    refill = models.BooleanField(default=False)
+    
+    
     
