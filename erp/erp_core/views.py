@@ -47,6 +47,35 @@ class CompanyUpdate(UpdateView):
     model = models.Company
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list')
+    
+# product management WIP
+
+class ProductCreate(CreateView):
+    """Create a new product"""
+    model = models.Product
+    form_class = forms.ProductForm
+    success_url = reverse_lazy('erp_core:company_list') 
+    
+class ProductDetail(DetailView):
+    """View a single product"""
+    model = models.Product
+    slug_field = 'name'
+    
+class ProductList(ListView):
+    """View all profiles"""
+    model = models.Product
+    
+    # filter via query
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = filters.ProductFilter(self.request.GET, queryset=self.get_queryset())
+        return context
+    
+class ProductUpdate(UpdateView):
+    """Update a product"""
+    model = models.Product
+    form_class = forms.ProductForm
+    success_url = reverse_lazy('erp_core:company_list')
 
 # invoice management
     

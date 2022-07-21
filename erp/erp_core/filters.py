@@ -18,6 +18,16 @@ class CompanyFilter(django_filters.FilterSet):
             'notes': ['icontains'], 
         }
         
+class ProductFilter(django_filters.FilterSet):
+    """Allow search over the product DB"""
+    class Meta:
+        model = models.Product
+        fields = {
+            'name': ['icontains'], 
+            'description': ['icontains'],
+            'refill': ['icontains'], 
+        }
+        
 class InvoiceFilter(django_filters.FilterSet):
     """Allow search over the invoice DB"""
     class Meta:

@@ -34,6 +34,17 @@ class Company(models.Model):
     def __str__(self):
         return self.name.upper()
     
+# wip    
+class Product(models.Model):
+    """Manage products and their quantities"""
+    name = models.CharField(max_length=30)
+    description = models.TextField(max_length=500)
+    quantity = models.IntegerField()
+    refill = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f"{self.name}"
+    
 class Invoice(models.Model):
     """Manage invoice and their attributes"""
     
@@ -53,6 +64,8 @@ class Invoice(models.Model):
     number = models.PositiveIntegerField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     kind = models.CharField(max_length=10, choices=Kind.choices(), default=Kind.choices()[0][0])
+    product = models.ForeignKey(Product, related_name="product", blank=True, null=True, on_delete=models.SET_NULL)
+    product_quantity = models.IntegerField()
     due_date = models.DateTimeField(auto_now_add=False)
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
@@ -84,12 +97,5 @@ class Payment(models.Model):
     def __str__(self):
         return f"{self.sender}, {self.amount}"
 
-# wip    
-class Item(models.Model):
-    """Manage physical goods management"""
-    name = models.CharField(max_length=30)
-    quantity = models.IntegerField()
-    refill = models.BooleanField(default=False)
-    
-    
+
     

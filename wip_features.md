@@ -4,7 +4,7 @@ USERS:
 DB:
 - azienda (nome, partita iva, settore, città, indirizzo, cap, provincia, nazione, sito web, note)
 - fattura (emittente, destinatario, data, numero, importo, tipologia di fattura, scadenza, stato pagamento, note)
-- merci (nome, quantità, da riordinare o meno)
+- prodotti (nome, quantità, descrizione, da riordinare o meno)
 
 HOME:
 - scegli tra le diverse funzioni possibili, logout, help
@@ -18,12 +18,15 @@ VISTE:
 - vista delle fatture passive scadute e non scadute (con indicazione se scadute o meno) suddivise per azienda
 - modifica azienda
 - modifica fattura
+- modifica prodotto
+- carica prodotto
 - possibilità di generare report 
 - possibilità di esportare su excel
 
 FORM:
 - form di inserimento aziende
 - form di inserimento fatture
+- form di inserimento prodotti
 
 
 TO BE DONE:
@@ -45,17 +48,14 @@ TO BE DONE:
 - ~~ vista dei pagamenti scaduti attivi e passivi ~~
 - razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
 - ~~generare reportistica CSV:~~ 
-- gestione merci e magazzino
+- gestione merci e magazzino 
     - generare modello per le merci 
     - generare vista per inserirle ex novo
     - generare vista per modificarle 
     - generare funzione per riordinarle
     - possibili spunti: https://arbcoms.com/store-management-system/
     - capire come si riflette su fatture
-
-
-
-
+    - creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
