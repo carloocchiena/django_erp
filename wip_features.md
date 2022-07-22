@@ -56,6 +56,7 @@ TO BE DONE:
     - possibili spunti: https://arbcoms.com/store-management-system/
     - capire come si riflette su fatture
     - creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma
+    - aggiungere filtered views
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  

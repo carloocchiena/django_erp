@@ -24,8 +24,8 @@
                             {{ filter.form.name__icontains }}<br>
                             {{ filter.form.description__icontains.label }}<br>
                             {{ filter.form.description__icontains }}<br>
-                            {{ filter.form.refill__icontains.label }}<br>
-                            {{ filter.form.refill__icontains }}<br>
+                            {{ filter.form.refill.label }}<br>
+                            {{ filter.form.refill }}<br>
                         </div>
                     </div>
                     <br>
@@ -43,15 +43,15 @@
                     <div class="card m-2">
                         <div class="card-body">
                             <div class="col d-flex">
-                                <a href="{% url 'erp_core:product_detail' product.name %}">
+                                <a href="{% url 'erp_core:product_detail' product.id %}">
                                     <h6 class="card-title my-auto">{{ product.name|upper }}</h6>
                                 </a>
                             </div>
                             <div class="col">
                                 <p class="card-text">
-                                    {{ product.description }}
-                                    {{ product.quantity }}
-                                    {{ product.refill }}
+                                    {{ product.description }}<br>
+                                    Remaining: {{ product.quantity }}<br>
+                                    Refill: {{ product.refill }}
                                     <br><a href="{% url 'erp_core:product_update' product.id %}" class="btn btn-info btn-sm text-light">
                                         Update product
                                     </a>

@@ -1,6 +1,6 @@
 import csv
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
@@ -48,18 +48,18 @@ class CompanyUpdate(UpdateView):
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list')
     
-# product management WIP
+# product management
 
 class ProductCreate(CreateView):
     """Create a new product"""
     model = models.Product
     form_class = forms.ProductForm
-    success_url = reverse_lazy('erp_core:company_list') 
+    success_url = reverse_lazy('erp_core:product_list') 
     
 class ProductDetail(DetailView):
     """View a single product"""
     model = models.Product
-    slug_field = 'name'
+    slug_field = 'id'
     
 class ProductList(ListView):
     """View all profiles"""
@@ -75,7 +75,7 @@ class ProductUpdate(UpdateView):
     """Update a product"""
     model = models.Product
     form_class = forms.ProductForm
-    success_url = reverse_lazy('erp_core:company_list')
+    success_url = reverse_lazy('erp_core:product_list')
 
 # invoice management
     
@@ -205,6 +205,7 @@ class CheckPassive(View):
         return render(request, self.template_name, {'context': context})
 
 # export to CSV
+
 class CsvExport(View):
     """Generate a csv file of the context object"""
     template_name = 'erp_core/csv_export.html'
@@ -218,8 +219,12 @@ class CsvExport(View):
         # this allows to scale on many other CSV export just managing the url param
         if 'invoice' in self.request.GET:
             model = models.Invoice.objects.all()
-        if 'company' in self.request.GET:
-            model = models.Company.objects.all()     
+        elif 'company' in self.request.GET:
+            model = models.Company.objects.all()
+        elif 'product' in self.request.GET:
+            model = models.Product.objects.all()
+        else:
+            raise Http404
         
         writer = csv.writer(response)
         

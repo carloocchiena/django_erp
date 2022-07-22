@@ -131,7 +131,7 @@ class ProductForm(forms.ModelForm):
             'refill': forms.CheckboxInput(attrs={
                 'name': 'refill',
                 'id': 'refill',
-                'required': True,
+                'required': False,
                 },
             ),
         }    
