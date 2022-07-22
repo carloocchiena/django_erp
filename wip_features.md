@@ -49,14 +49,15 @@ TO BE DONE:
 - razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
 - ~~generare reportistica CSV:~~ 
 - gestione merci e magazzino 
-    - generare modello per le merci 
-    - generare vista per inserirle ex novo
-    - generare vista per modificarle 
+    - ~~generare modello per le merci~~ 
+    - ~~generare vista per inserirle ex novo~~
+    - ~~generare vista per modificarle~~ 
     - generare funzione per riordinarle
     - possibili spunti: https://arbcoms.com/store-management-system/
     - capire come si riflette su fatture
-    - creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma
+    - ~~creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma~~
     - aggiungere filtered views
+    - capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
