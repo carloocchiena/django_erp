@@ -1,7 +1,7 @@
 import csv
 
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -84,6 +84,33 @@ class InvoiceCreate(CreateView):
     model = models.Invoice
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list') 
+    
+    #wip per modificare quantità prodotto
+    def post(self, request):
+        """Manage invoice creation and update of the products quantities"""
+        form = forms.InvoiceForm(request.POST)
+        product_name = models.Product.objects.get(pk=form['product'].value()).name
+        product_quantity = models.Product.objects.get(name=product_name).quantity
+        print(product_quantity)
+        update_quantity = int(form['product_quantity'].value())
+        kind = form['kind'].value()
+        print(update_quantity)
+        
+        if form.is_valid():
+            if kind == 'ACTIVE':
+                product_quantity -= update_quantity
+            else:
+                product_quantity += update_quantity
+            product_quantity.save()
+            product_name.save()  # arrivato qui, tutto ok ma non salva; provare con https://stackoverflow.com/questions/68506395/how-can-i-update-the-field-of-a-model-from-another-model-field-in-django 
+            models.Product.objects.all().save()
+            form.save()
+            return redirect('erp_core:invoice_list')
+        else:
+            return render(request, self.template_name)
+                
+            
+    
     
 class InvoiceList(ListView):
     """View all invoices"""

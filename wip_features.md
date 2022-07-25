@@ -54,7 +54,7 @@ TO BE DONE:
     - ~~generare vista per modificarle~~ 
     - generare funzione per riordinarle
     - possibili spunti: https://arbcoms.com/store-management-system/
-    - capire come si riflette su fatture
+    - capire come si riflette su fatture (siamo qui, stiamo provando a gestire il tutto)
     - ~~creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma~~
     - aggiungere filtered views
     - capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__
