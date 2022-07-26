@@ -2,6 +2,7 @@ from django.db.models import Sum
 
 from . import models
 
+
 def kind_list_updater() -> list:
     """Create the list of valid kind type from models.py"""
     valid_kind = []
@@ -10,6 +11,7 @@ def kind_list_updater() -> list:
         valid_kind.append(kind[0])
 
     return valid_kind    
+
 
 def kind_checker(kind:str) -> str:
     """Check formal correctness of input values"""
@@ -25,6 +27,7 @@ def kind_checker(kind:str) -> str:
         initiator = 'sender'
         
     return kind, initiator
+
 
 def credit_calculator(kind:str='ACTIVE') -> dict:
     """Sum all the invoices that the company issued to all its ctps,

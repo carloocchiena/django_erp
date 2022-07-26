@@ -8,9 +8,11 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from . import models, forms, filters, functions
 
+
 class Home(View):
     def get(self, request):
         return render(request, 'erp_core/home.html')
+    
     
 class Help(View):
     """Help page"""
@@ -19,7 +21,8 @@ class Help(View):
     def get(self, request):
         return render(request, self.template_name)
         
-# company management 
+        
+# COMPANY MANAGEMENT 
 
 class CompanyCreate(CreateView):
     """Create a new company"""
@@ -27,10 +30,12 @@ class CompanyCreate(CreateView):
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list') 
     
+    
 class CompanyDetail(DetailView):
     """View a single profile"""
     model = models.Company
     slug_field = 'vat_id'
+    
     
 class CompanyList(ListView):
     """View all profiles"""
@@ -42,13 +47,15 @@ class CompanyList(ListView):
         context['filter'] = filters.CompanyFilter(self.request.GET, queryset=self.get_queryset())
         return context
     
+    
 class CompanyUpdate(UpdateView):
     """Update a company"""
     model = models.Company
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list')
     
-# product management
+    
+# PRODUCT MANAGEMENT
 
 class ProductCreate(CreateView):
     """Create a new product"""
@@ -56,10 +63,12 @@ class ProductCreate(CreateView):
     form_class = forms.ProductForm
     success_url = reverse_lazy('erp_core:product_list') 
     
+    
 class ProductDetail(DetailView):
     """View a single product"""
     model = models.Product
     slug_field = 'id'
+    
     
 class ProductList(ListView):
     """View all profiles"""
@@ -71,45 +80,21 @@ class ProductList(ListView):
         context['filter'] = filters.ProductFilter(self.request.GET, queryset=self.get_queryset())
         return context
     
+    
 class ProductUpdate(UpdateView):
     """Update a product"""
     model = models.Product
     form_class = forms.ProductForm
     success_url = reverse_lazy('erp_core:product_list')
 
-# invoice management
+
+# INVOICE MANAGEMENT
     
 class InvoiceCreate(CreateView):
     """Create a new invoice"""
     model = models.Invoice
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list') 
-    
-    #wip per modificare quantità prodotto
-    def post(self, request):
-        """Manage invoice creation and update of the products quantities"""
-        form = forms.InvoiceForm(request.POST)
-        product_name = models.Product.objects.get(pk=form['product'].value()).name
-        product_quantity = models.Product.objects.get(name=product_name).quantity
-        print(product_quantity)
-        update_quantity = int(form['product_quantity'].value())
-        kind = form['kind'].value()
-        print(update_quantity)
-        
-        if form.is_valid():
-            if kind == 'ACTIVE':
-                product_quantity -= update_quantity
-            else:
-                product_quantity += update_quantity
-            product_quantity.save()
-            product_name.save()  # arrivato qui, tutto ok ma non salva; provare con https://stackoverflow.com/questions/68506395/how-can-i-update-the-field-of-a-model-from-another-model-field-in-django 
-            models.Product.objects.all().save()
-            form.save()
-            return redirect('erp_core:invoice_list')
-        else:
-            return render(request, self.template_name)
-                
-            
     
     
 class InvoiceList(ListView):
@@ -122,19 +107,22 @@ class InvoiceList(ListView):
         context['filter'] = filters.InvoiceFilter(self.request.GET, queryset=self.get_queryset())
         return context  
     
+    
 class InvoiceUpdate(UpdateView):
     """Update an invoice"""
     model = models.Invoice
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list')
     
-# payment management
+    
+# PAYMENT MANAGEMENT
 
 class PaymentCreate(CreateView):
     """Create a new payment"""
     model = models.Payment
     form_class = forms.PaymentForm
     success_url = reverse_lazy('erp_core:payment_list') 
+    
     
 class PaymentList(ListView):
     """View all Payments"""
@@ -146,18 +134,21 @@ class PaymentList(ListView):
         context['filter'] = filters.PaymentFilter(self.request.GET, queryset=self.get_queryset())
         return context  
     
+    
 class PaymentUpdate(UpdateView):
     """Update an Payment"""
     model = models.Payment
     form_class = forms.PaymentForm
     success_url = reverse_lazy('erp_core:payment_list')
     
-# pre-made filterd views
+    
+# PRE-MADE FILTERS
 
 class FilteredView(View):
     """Main page for all the filters"""
     def get(self, request):
         return render(request, 'erp_core/filtered_view.html')
+
 
 class InvoiceActive(View):
     """Pre-made filter for active invoices"""
@@ -168,6 +159,7 @@ class InvoiceActive(View):
         context = self.model.objects.all().filter(kind='ACTIVE')
         return render(request, self.template_name, {'context': context})
     
+    
 class InvoiceActiveOverdue(View):
     """Pre-made filter for overdue active invoices"""
     model = models.Invoice
@@ -176,6 +168,7 @@ class InvoiceActiveOverdue(View):
     def get(self, request):
         context = self.model.objects.all().filter(kind='ACTIVE', status='UNPAID')
         return render(request, self.template_name, {'context': context})
+
 
 class InvoicePassive(View):
     """Pre-made filter for passive invoices"""
@@ -186,6 +179,7 @@ class InvoicePassive(View):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context}) 
     
+    
 class InvoicePassiveOverdue(View):
     """Pre-made filter for overdue active invoices"""
     model = models.Invoice
@@ -194,6 +188,7 @@ class InvoicePassiveOverdue(View):
     def get(self, request):
         context = self.model.objects.all().filter(kind='PASSIVE', status='UNPAID')
         return render(request, self.template_name, {'context': context})
+    
     
 class PaymentActive(View):
     """Pre-made filter for active payments"""
@@ -204,6 +199,7 @@ class PaymentActive(View):
         context = self.model.objects.all().filter(kind='ACTIVE')
         return render(request, self.template_name, {'context': context})
 
+
 class PaymentPassive(View):
     """Pre-made filter for passive payments"""
     model = models.Payment
@@ -213,7 +209,8 @@ class PaymentPassive(View):
         context = self.model.objects.all().filter(kind='PASSIVE')
         return render(request, self.template_name, {'context': context})    
 
-# credit management
+
+# CREDIT MANAGEMENT
 
 class CheckActive(View):
     """View to show the credit balance"""
@@ -223,6 +220,7 @@ class CheckActive(View):
         context = functions.credit_calculator('ACTIVE')
         return render(request, self.template_name, {'context': context})
     
+    
 class CheckPassive(View):
     """View to show the credit balance"""
     template_name = 'erp_core/check_passive.html'
@@ -231,7 +229,8 @@ class CheckPassive(View):
         context = functions.credit_calculator('PASSIVE')
         return render(request, self.template_name, {'context': context})
 
-# export to CSV
+
+# CSV EXPORT
 
 class CsvExport(View):
     """Generate a csv file of the context object"""

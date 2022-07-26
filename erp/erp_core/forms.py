@@ -2,6 +2,7 @@ from django import forms
 
 from . import models
 
+
 class CompanyForm(forms.ModelForm):
     """Manage company creations"""
     class Meta:
@@ -93,6 +94,7 @@ class CompanyForm(forms.ModelForm):
             ),
         }
         
+        
 class ProductForm(forms.ModelForm):
     """Manage product creation"""
     class Meta:
@@ -135,6 +137,7 @@ class ProductForm(forms.ModelForm):
                 },
             ),
         }    
+        
         
 class InvoiceForm(forms.ModelForm):
     """Manage invoice creation"""
@@ -244,6 +247,7 @@ class InvoiceForm(forms.ModelForm):
                 },
             ),
         }         
+        
         
 class PaymentForm(forms.ModelForm):
     """Manage payment creation"""

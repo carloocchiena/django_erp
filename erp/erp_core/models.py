@@ -7,6 +7,7 @@ class ChoiceEnum(Enum):
     def choices(cls):
         return [(choice.name, choice.value) for choice in cls]
     
+    
 class Company(models.Model):
     """Manage company profile and their attributes"""   
     
@@ -34,16 +35,17 @@ class Company(models.Model):
     def __str__(self):
         return self.name.upper()
     
-# wip    
+    
 class Product(models.Model):
     """Manage products and their quantities"""
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=500)
     quantity = models.IntegerField()
-    refill = models.BooleanField(default=False)
-    
+    refill = models.BooleanField(default=False)   
+
     def __str__(self):
         return f"{self.name}"
+    
     
 class Invoice(models.Model):
     """Manage invoice and their attributes"""
@@ -70,11 +72,22 @@ class Invoice(models.Model):
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
     
+     # wip per salvare quantità prodotto da fattura
+    def save(self, *args, **kwargs):
+        """Manage saving of the product quantity"""
+        super().save(*args, **kwargs)
+        # aggiungere check passivo\attivo
+        product_id = Product.objects.get(id=self.product.id)
+        product_new_quantity = self.product_quantity
+        product_id.quantity += product_new_quantity
+        product_id.save(update_fields=['quantity'])
+    
     class Meta:
         ordering = ['date']
     
     def __str__(self):
         return f"Sender: {self.sender}, Receiver:{self.receiver}, Amount:{self.amount}, Due_date:{self.due_date}"  
+    
     
 class Payment(models.Model):
     """Manage incoming and outcoming payments"""
@@ -96,6 +109,3 @@ class Payment(models.Model):
     
     def __str__(self):
         return f"{self.sender}, {self.amount}"
-
-
-    

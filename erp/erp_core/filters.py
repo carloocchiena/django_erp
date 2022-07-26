@@ -3,6 +3,7 @@ from django_filters.widgets import BooleanWidget
 
 from . import models
 
+
 class CompanyFilter(django_filters.FilterSet):
     """Allow search over the company DB"""
     class Meta:
@@ -18,6 +19,7 @@ class CompanyFilter(django_filters.FilterSet):
             'website': ['icontains'], 
             'notes': ['icontains'], 
         }
+        
         
 class ProductFilter(django_filters.FilterSet):
     """Allow search over the product DB"""
@@ -45,6 +47,7 @@ class InvoiceFilter(django_filters.FilterSet):
             'status': ['icontains'], 
             'notes': ['icontains'], 
         }
+        
         
 class PaymentFilter(django_filters.FilterSet):
     """Allow search over the payment DB"""
