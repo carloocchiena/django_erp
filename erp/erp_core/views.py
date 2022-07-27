@@ -20,6 +20,14 @@ class Help(View):
     
     def get(self, request):
         return render(request, self.template_name)
+    
+
+class Feature(View):
+    """Feature page"""
+    template_name = 'erp_core/feature.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
         
         
 # COMPANY MANAGEMENT 

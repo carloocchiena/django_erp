@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title %}
+    <title>Available features</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Welcome to sERPent</h2>
+            <h3>A full-Python ERP prototype</h3>
+            <p>
+                List of all the available feature as per <strong>{% now "SHORT_DATE_FORMAT" %}</strong>:
+
+                <ul class="list-group col-6">
+                    <li class="list-group-item list-group-item-info"><strong>Data entry</strong></li>
+                    <li class="list-group-item">Create a new user (backend only)</li>
+                    <li class="list-group-item">Create a new user group (backend only)</li>
+                    <li class="list-group-item">Create a new company</li>
+                    <li class="list-group-item">Create a new product</li>
+                    <li class="list-group-item">Create a new invoice</li>
+                    <li class="list-group-item">Update a company</li>
+                    <li class="list-group-item">Update a product</li>
+                    <li class="list-group-item">Update an invoice</li>
+                    <li class="list-group-item list-group-item-info"><strong>Automations</strong></li>
+                    <li class="list-group-item">See a list of all the companies, with dynamic filters and CSV export</li>
+                    <li class="list-group-item">See a list of all the products, with dynamic filters and CSV export</li>
+                    <li class="list-group-item">See a list of all the invoices, with dynamic filters and CSV export</li>
+                    <li class="list-group-item">Automatically update product quantity for each invoice and flag refill needed if quantity is under a given threshold</li>
+                    <li class="list-group-item">Report open credits position</li>
+                    <li class="list-group-item">Report open debits position</li>
+                    <li class="list-group-item">Report all active invoices </li>
+                    <li class="list-group-item">Report all active payments </li>
+                    <li class="list-group-item">Report all passive invoices </li>
+                    <li class="list-group-item">Report overdue active invoices </li>
+                    <li class="list-group-item">Report overdue passive invoices </li>
+                </ul>
+            
+            </p>
+        </div>
+    </div>    
+</div>
+
+{% endblock content %}

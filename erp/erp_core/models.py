@@ -67,7 +67,7 @@ class Invoice(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     kind = models.CharField(max_length=10, choices=Kind.choices(), default=Kind.choices()[0][0])
     product = models.ForeignKey(Product, related_name="product", blank=True, null=True, on_delete=models.SET_NULL)
-    product_quantity = models.IntegerField()
+    product_quantity = models.PositiveIntegerField()
     due_date = models.DateTimeField(auto_now_add=False)
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
@@ -79,8 +79,18 @@ class Invoice(models.Model):
         # aggiungere check passivo\attivo
         product_id = Product.objects.get(id=self.product.id)
         product_new_quantity = self.product_quantity
-        product_id.quantity += product_new_quantity
-        product_id.save(update_fields=['quantity'])
+        
+        if self.kind == 'ACTIVE':
+            product_id.quantity += product_new_quantity
+        else:
+            product_id.quantity -= product_new_quantity
+            
+        if product_id.quantity < 5:
+            product_id.refill = True
+        else: 
+            product_id.refill = False
+            
+        product_id.save(update_fields=['quantity', 'refill'])
     
     class Meta:
         ordering = ['date']
