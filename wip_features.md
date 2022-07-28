@@ -4,7 +4,7 @@ USERS:
 DB:
 - azienda (nome, partita iva, settore, città, indirizzo, cap, provincia, nazione, sito web, note)
 - fattura (emittente, destinatario, data, numero, importo, tipologia di fattura, scadenza, stato pagamento, note)
-- merci (nome, quantità, da riordinare o meno)
+- prodotti (nome, quantità, descrizione, da riordinare o meno)
 
 HOME:
 - scegli tra le diverse funzioni possibili, logout, help
@@ -18,12 +18,15 @@ VISTE:
 - vista delle fatture passive scadute e non scadute (con indicazione se scadute o meno) suddivise per azienda
 - modifica azienda
 - modifica fattura
+- modifica prodotto
+- carica prodotto
 - possibilità di generare report 
 - possibilità di esportare su excel
 
 FORM:
 - form di inserimento aziende
 - form di inserimento fatture
+- form di inserimento prodotti
 
 
 TO BE DONE:
@@ -45,17 +48,22 @@ TO BE DONE:
 - ~~ vista dei pagamenti scaduti attivi e passivi ~~
 - razionalizzare nomi url, viste, template in modo che seguano una logica condivisa tra loro
 - ~~generare reportistica CSV:~~ 
-- gestione merci e magazzino
-    - generare modello per le merci 
-    - generare vista per inserirle ex novo
-    - generare vista per modificarle 
-    - generare funzione per riordinarle
-    - possibili spunti: https://arbcoms.com/store-management-system/
-    - capire come si riflette su fatture
+- gestione merci e magazzino 
+    - ~~generare modello per le merci~~ 
+    - ~~generare vista per inserirle ex novo~~
+    - ~~generare vista per modificarle~~ 
+    - ~~generare funzione per riordinarle~~
+    - capire come si riflette su fatture (siamo qui, stiamo provando a gestire il tutto) provare con https://stackoverflow.com/questions/68506395/how-can-i-update-the-field-of-a-model-from-another-model-field-in-django e https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django 
+    - ~~funziona ma ritorna una cifra apparentemente a cazz tenendo in memoria tutti i precedenti~~
+    - ~~testare e aggiungere if nel modello per fatture attive-passive~~
+    - ~~aggiungere autochecl per refill quantità~~
+    - attenzione, se faccio per modificare la fattura ma non modifico la quantità, viene comunque presa in modo additivo, da ragionare (non so bene come fare ma ci penso su) 
+    - ~~riportare anche poi su modifica fatture lo stesso metodo~~
+    - ~~creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma~~
+    - aggiungere filtered views
+    - capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__
 
-
-
-
+- fare lista features
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  

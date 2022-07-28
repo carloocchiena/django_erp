@@ -1,6 +1,8 @@
 import django_filters
+from django_filters.widgets import BooleanWidget
 
 from . import models
+
 
 class CompanyFilter(django_filters.FilterSet):
     """Allow search over the company DB"""
@@ -18,6 +20,18 @@ class CompanyFilter(django_filters.FilterSet):
             'notes': ['icontains'], 
         }
         
+        
+class ProductFilter(django_filters.FilterSet):
+    """Allow search over the product DB"""
+    refill = django_filters.BooleanFilter(widget=BooleanWidget())
+    class Meta:
+        model = models.Product
+        fields = {
+            'name': ['icontains'], 
+            'description': ['icontains'],
+        }
+
+        
 class InvoiceFilter(django_filters.FilterSet):
     """Allow search over the invoice DB"""
     class Meta:
@@ -33,6 +47,7 @@ class InvoiceFilter(django_filters.FilterSet):
             'status': ['icontains'], 
             'notes': ['icontains'], 
         }
+        
         
 class PaymentFilter(django_filters.FilterSet):
     """Allow search over the payment DB"""

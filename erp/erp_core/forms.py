@@ -2,6 +2,7 @@ from django import forms
 
 from . import models
 
+
 class CompanyForm(forms.ModelForm):
     """Manage company creations"""
     class Meta:
@@ -93,6 +94,51 @@ class CompanyForm(forms.ModelForm):
             ),
         }
         
+        
+class ProductForm(forms.ModelForm):
+    """Manage product creation"""
+    class Meta:
+        model = models.Product
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'label': 'Product Name',
+                'class': 'form-control',
+                'name': 'product_name',
+                'id': 'product_name',
+                'placeholder': 'Enter product name',
+                'required': True,
+                },
+            ),
+            'description': forms.Textarea(attrs={
+                'label': 'Product Description',
+                'class': 'form-control',
+                'name': 'product_description',
+                'id': 'product_description',
+                'rows': 2, 
+                'cols': 10, 
+                'placeholder': 'Enter product description',
+                'required': False,
+                },
+            ),
+            'quantity': forms.NumberInput(attrs={
+                'label': 'Product Quantity',
+                'class': 'form-control',
+                'name': 'product_quantity',
+                'id': 'product_quantity',
+                'placeholder': '5',
+                'required': True,
+                },
+            ),
+            'refill': forms.CheckboxInput(attrs={
+                'name': 'refill',
+                'id': 'refill',
+                'required': False,
+                },
+            ),
+        }    
+        
+        
 class InvoiceForm(forms.ModelForm):
     """Manage invoice creation"""
     class Meta:
@@ -153,6 +199,24 @@ class InvoiceForm(forms.ModelForm):
                 'required': True,
                 },
             ),
+            'product': forms.Select(attrs={
+                'label': 'Product',
+                'class': 'form-control',
+                'name': 'product',
+                'id': 'product',
+                'placeholder': 'Enter product name',
+                'required': True,
+                },
+            ),
+            'product_quantity': forms.NumberInput(attrs={
+                'label': 'Product Quantity',
+                'class': 'form-control',
+                'name': 'product_quantity',
+                'id': 'product_quantity',
+                'placeholder': '5',
+                'required': False,
+                },
+            ),
             'due_date': forms.DateInput(attrs={
                 'label': 'Invoice Due Date',
                 'class': 'form-control',
@@ -183,6 +247,7 @@ class InvoiceForm(forms.ModelForm):
                 },
             ),
         }         
+        
         
 class PaymentForm(forms.ModelForm):
     """Manage payment creation"""
@@ -246,5 +311,5 @@ class PaymentForm(forms.ModelForm):
                 'required': False,
                 },
             ),
-        }         
-        
+        }
+              

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Product List</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        
+        <h2>
+            &nbsp;Productlist
+            <a href="{% url 'erp_core:csv_export' %}?product" class="btn text-light btn-info btn-sm mt-1 float-end">Export to csv</a>
+        </h2>
+
+        <div class="row">
+            <div class="col-5">
+                <h5 class="ms-2">Search via query</h5>
+                <form action="" method="get">
+                    <div class="row g-3">
+                        <div class="col ms-2">
+                            {{ filter.form.name__icontains.label }}<br>
+                            {{ filter.form.name__icontains }}<br>
+                            {{ filter.form.description__icontains.label }}<br>
+                            {{ filter.form.description__icontains }}<br>
+                            {{ filter.form.refill.label }}<br>
+                            {{ filter.form.refill }}<br>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-info text-light mx-2", value="Search">
+                    <a href="{% url 'erp_core:product_list' %}" class="btn text-light btn-info">Clean filters</a>
+                </form>
+                <br>
+                
+                <div class="col">
+                    {% if filter.qs is None %}
+                        { filter.qs = object_list }
+                    {% endif %}
+                    <p>&nbsp;There are {{ filter.qs.count }} products</p>
+                    {% for product in filter.qs %} 
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <div class="col d-flex">
+                                <a href="{% url 'erp_core:product_detail' product.id %}">
+                                    <h6 class="card-title my-auto">{{ product.name|upper }}</h6>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <p class="card-text">
+                                    {{ product.description }}<br>
+                                    Remaining: {{ product.quantity }}<br>
+                                    Refill: {{ product.refill }}
+                                    <br><a href="{% url 'erp_core:product_update' product.id %}" class="btn btn-info btn-sm text-light">
+                                        Update product
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

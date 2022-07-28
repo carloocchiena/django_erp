@@ -7,6 +7,7 @@ class ChoiceEnum(Enum):
     def choices(cls):
         return [(choice.name, choice.value) for choice in cls]
     
+    
 class Company(models.Model):
     """Manage company profile and their attributes"""   
     
@@ -34,6 +35,18 @@ class Company(models.Model):
     def __str__(self):
         return self.name.upper()
     
+    
+class Product(models.Model):
+    """Manage products and their quantities"""
+    name = models.CharField(max_length=30)
+    description = models.TextField(max_length=500)
+    quantity = models.IntegerField()
+    refill = models.BooleanField(default=False)   
+
+    def __str__(self):
+        return f"{self.name}"
+    
+    
 class Invoice(models.Model):
     """Manage invoice and their attributes"""
     
@@ -53,15 +66,38 @@ class Invoice(models.Model):
     number = models.PositiveIntegerField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     kind = models.CharField(max_length=10, choices=Kind.choices(), default=Kind.choices()[0][0])
+    product = models.ForeignKey(Product, related_name="product", blank=True, null=True, on_delete=models.SET_NULL)
+    product_quantity = models.PositiveIntegerField()
     due_date = models.DateTimeField(auto_now_add=False)
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
+    
+     # wip per salvare quantità prodotto da fattura
+    def save(self, *args, **kwargs):
+        """Manage saving of the product quantity"""
+        super().save(*args, **kwargs)
+        # aggiungere check passivo\attivo
+        product_id = Product.objects.get(id=self.product.id)
+        product_new_quantity = self.product_quantity
+        
+        if self.kind == 'ACTIVE':
+            product_id.quantity += product_new_quantity
+        else:
+            product_id.quantity -= product_new_quantity
+            
+        if product_id.quantity < 5:
+            product_id.refill = True
+        else: 
+            product_id.refill = False
+            
+        product_id.save(update_fields=['quantity', 'refill'])
     
     class Meta:
         ordering = ['date']
     
     def __str__(self):
         return f"Sender: {self.sender}, Receiver:{self.receiver}, Amount:{self.amount}, Due_date:{self.due_date}"  
+    
     
 class Payment(models.Model):
     """Manage incoming and outcoming payments"""
@@ -83,13 +119,3 @@ class Payment(models.Model):
     
     def __str__(self):
         return f"{self.sender}, {self.amount}"
-
-# wip    
-class Item(models.Model):
-    """Manage physical goods management"""
-    name = models.CharField(max_length=30)
-    quantity = models.IntegerField()
-    refill = models.BooleanField(default=False)
-    
-    
-    
