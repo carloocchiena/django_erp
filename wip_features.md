@@ -53,7 +53,7 @@ TO BE DONE:
     - ~~generare vista per inserirle ex novo~~
     - ~~generare vista per modificarle~~ 
     - ~~generare funzione per riordinarle~~
-    - capire come si riflette su fatture (siamo qui, stiamo provando a gestire il tutto) provare con https://stackoverflow.com/questions/68506395/how-can-i-update-the-field-of-a-model-from-another-model-field-in-django e https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django 
+    - ~~capire come si riflette su fatture (siamo qui, stiamo provando a gestire il tutto) provare con https://stackoverflow.com/questions/68506395/how-can-i-update-the-field-of-a-model-from-another-model-field-in-django e https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django ~~
     - ~~funziona ma ritorna una cifra apparentemente a cazz tenendo in memoria tutti i precedenti~~
     - ~~testare e aggiungere if nel modello per fatture attive-passive~~
     - ~~aggiungere autochecl per refill quantità~~
