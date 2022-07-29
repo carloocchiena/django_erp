@@ -69,4 +69,5 @@ DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
 - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
 - https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template
+- https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django
 
