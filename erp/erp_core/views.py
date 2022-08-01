@@ -257,6 +257,7 @@ class CsvExport(View):
             model = models.Company.objects.all()
         elif 'product' in self.request.GET:
             model = models.Product.objects.all()
+            # model = models.Product.objects.filter(id__gte=0) #wip interessante ma non pare funzionare
         else:
             raise Http404
         

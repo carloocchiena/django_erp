@@ -63,7 +63,7 @@ TO BE DONE:
     - aggiungere filtered views
     - capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__
 
-- fare lista features
+- aggiornare lista features
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
