@@ -9,48 +9,44 @@
     
     <div class="container">
 
-        <h1 class="mb-4">Hey, {{ user.username }}, what do you want to do?</h1>
+        <h1 class="mb-4">Howdy, {{ user.username|title }}.<br>What do you want to do?</h1>
         <div class="row">
             <div class="col-6">
                 <div class"btn-group">
                     <a href="{% url 'erp_core:company_create' %}"
-                        <button class="btn btn-info text-light mb-3">Add a new company</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Add a new company</button>
                     </a>
 
                     <a href="{% url 'erp_core:product_create' %}"
-                        <button class="btn btn-info text-light mb-3">Add a new product</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Add a new product</button>
                     </a>
 
                     <a href="{% url 'erp_core:invoice_create' %}"
-                        <button class="btn btn-info text-light mb-3">Add a new invoice</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Add a new invoice</button>
                     </a>
 
                     <a href="{% url 'erp_core:payment_create' %}"
-                        <button class="btn btn-info text-light mb-3">Add a new payment</button>
-                    </a>
-
-                    <a href="http://127.0.0.1:8000/admin/"
-                        <button class="btn btn-info text-light mb-3">TEMP ADMIN</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Add a new payment</button>
                     </a>
 
                     <a href="{% url 'erp_core:company_list' %}"
-                        <button class="btn btn-info text-light mb-3">Company list</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Company list</button>
                     </a>
 
                     <a href="{% url 'erp_core:product_list' %}"
-                        <button class="btn btn-info text-light mb-3">Product list</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Product list</button>
                     </a>
 
                     <a href="{% url 'erp_core:invoice_list' %}"
-                        <button class="btn btn-info text-light mb-3">Invoice list</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Invoice list</button>
                     </a>
 
                     <a href="{% url 'erp_core:payment_list' %}"
-                        <button class="btn btn-info text-light mb-3">Payment list</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Payment list</button>
                     </a>
 
                     <a href="{% url 'erp_core:filtered_view' %}"
-                        <button class="btn btn-info text-light mb-3">Filtered views</button>
+                        <button class="menu-btn btn btn-info text-light mb-3">Filtered views</button>
                     </a>
                             
                 </div>

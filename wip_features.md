@@ -61,9 +61,11 @@ TO BE DONE:
     - ~~riportare anche poi su modifica fatture lo stesso metodo~~
     - ~~creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma~~
     - aggiungere filtered views
-    - capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__
+    - ~~capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__~~
 
 - aggiornare lista features
+- UI improvement
+    - centrare testi bottoni home
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  

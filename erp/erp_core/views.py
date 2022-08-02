@@ -252,12 +252,11 @@ class CsvExport(View):
         
         # this allows to scale on many other CSV export just managing the url param
         if 'invoice' in self.request.GET:
-            model = models.Invoice.objects.all()
+            model = models.Invoice.objects.all().values()
         elif 'company' in self.request.GET:
-            model = models.Company.objects.all()
+            model = models.Company.objects.all().values()
         elif 'product' in self.request.GET:
-            model = models.Product.objects.all()
-            # model = models.Product.objects.filter(id__gte=0) #wip interessante ma non pare funzionare
+            model = models.Product.objects.all().values()
         else:
             raise Http404
         
@@ -265,7 +264,6 @@ class CsvExport(View):
         
         for item in model:
             writer.writerow([item])
-            print(item)
             
         return response
     
