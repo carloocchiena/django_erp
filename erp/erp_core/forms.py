@@ -130,6 +130,15 @@ class ProductForm(forms.ModelForm):
                 'required': True,
                 },
             ),
+             'price': forms.NumberInput(attrs={
+                'label': 'Product Price',
+                'class': 'form-control',
+                'name': 'product_price',
+                'id': 'product_price',
+                'placeholder': '100',
+                'required': False,
+                },
+            ),
             'refill': forms.CheckboxInput(attrs={
                 'name': 'refill',
                 'id': 'refill',

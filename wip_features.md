@@ -65,11 +65,17 @@ TO BE DONE:
 
 - aggiornare lista features
 - UI improvement
-    - centrare testi bottoni home
+    - ~~centrare testi bottoni home~~
+
+altre migliorie e implementazioni notate:
+- le fatture vanno indicate come attive\passive. avrebbe senso indicare che se la società è la mia, viene gestito di conseguenza? D'altronde, cosa significa dire che la società è la mia? Andrebbe gestito tramite flag. E il form dovrebbe essere quindi condizionato. Da valutare.
+- add testing
+- 
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
 - https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/ 
 - https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template
 - https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django
+- https://whitenoise.evans.io/en/stable/index.html
 

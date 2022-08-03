@@ -50,6 +50,7 @@
                             <div class="col">
                                 <p class="card-text">
                                     {{ product.description }}<br>
+                                    Price: {{ product.price }}<br>
                                     Remaining: {{ product.quantity }}<br>
                                     Refill: {{ product.refill }}
                                     <br><a href="{% url 'erp_core:product_update' product.id %}" class="btn btn-info btn-sm text-light">

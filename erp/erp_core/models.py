@@ -41,6 +41,7 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=500)
     quantity = models.IntegerField()
+    price = models.PositiveIntegerField(blank=True, null=True)
     refill = models.BooleanField(default=False)   
 
     def __str__(self):
