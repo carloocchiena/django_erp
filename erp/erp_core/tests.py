@@ -62,5 +62,4 @@ class InvoiceTestCase(TestCase):
 
         self.assertEqual(alfa_invoice.kind, 'ACTIVE')
         self.assertEqual(alfa_product.quantity, 55)
-             
-                           
+                            
