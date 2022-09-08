@@ -70,7 +70,7 @@ TO BE DONE:
 altre migliorie e implementazioni notate:
 - le fatture vanno indicate come attive\passive. avrebbe senso indicare che se la società è la mia, viene gestito di conseguenza? D'altronde, cosa significa dire che la società è la mia? Andrebbe gestito tramite flag. E il form dovrebbe essere quindi condizionato. Da valutare.
 - add testing
-- 
+- API with security (https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html)
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  
@@ -78,4 +78,5 @@ DOCS & REFS:
 - https://stackoverflow.com/questions/53339813/django-link-to-download-csv-in-template
 - https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django
 - https://whitenoise.evans.io/en/stable/index.html
+- https://www.django-rest-framework.org/api-guide/authentication/ 
 
