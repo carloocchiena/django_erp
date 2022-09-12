@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [] # eg; ['python-serpent.com'] aka website's domain name (URL o
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    
+    # Third-Party apps
+    'rest_framework',
+    
+    # Local apps
     'erp_core',
 ]
 

@@ -1,10 +1,17 @@
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
 
 from . import views
 
 app_name = 'erp_core'
+
+router = routers.DefaultRouter()
+router.register(r'company', views.CompanyViewSet)
+router.register(r'product', views.ProductViewSet)
+router.register(r'invoice', views.InvoiceViewSet)
+router.register(r'payment', views.PaymentViewSet)
 
 urlpatterns = [
     path('', login_required(views.Home.as_view()), name='home'),
@@ -36,4 +43,5 @@ urlpatterns = [
     path('filtered_view/check_active/', login_required(views.CheckActive.as_view()), name='check_active'),
     path('filtered_view/check_passive/', login_required(views.CheckPassive.as_view()), name='check_passive'),
     path('csv_export/', login_required(views.CsvExport.as_view()), name='csv_export'),
+    path('api/v1/', include(router.urls)),
 ]

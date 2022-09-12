@@ -21,6 +21,7 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('erp_core.urls')),
     path('admin/', admin.site.urls),
+    path('api/v1/', include('rest_framework.urls', namespace='rest_framework_v1')), 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

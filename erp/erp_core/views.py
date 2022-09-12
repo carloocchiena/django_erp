@@ -5,9 +5,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from rest_framework import viewsets
 
-from . import models, forms, filters, functions
+from . import models, forms, filters, functions, serializers
 
+
+# GENERAL WEBSITE NAVIGATION
 
 class Home(View):
     def get(self, request):
@@ -266,4 +269,31 @@ class CsvExport(View):
             writer.writerow([item])
             
         return response
+    
+    
+# API MANAGEMENT
+
+class CompanyViewSet(viewsets.ModelViewSet):
+    """Return our API object"""
+    queryset = models.Company.objects.all().order_by('name')
+    serializer_class = serializers.CompanySerializer
+    
+    
+class ProductViewSet(viewsets.ModelViewSet):
+    """Return our API object"""
+    queryset = models.Product.objects.all().order_by('name')
+    serializer_class = serializers.ProductSerializer
+    
+    
+class InvoiceViewSet(viewsets.ModelViewSet):
+    """Return our API object"""
+    queryset = models.Invoice.objects.all()
+    serializer_class = serializers.InvoiceSerializer
+    
+    
+class PaymentViewSet(viewsets.ModelViewSet):
+    """Return our API object"""
+    queryset = models.Payment.objects.all()
+    serializer_class = serializers.PaymentSerializer
+    
     
