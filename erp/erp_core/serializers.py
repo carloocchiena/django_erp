@@ -4,7 +4,7 @@ from . import models
 
 class CompanySerializer(serializers.HyperlinkedModelSerializer):
     """
-    API endpoint that allows groups to be viewed or edited via hyperlink.
+    API endpoint that allows groups to be viewed via hyperlink.
     """
     url = serializers.HyperlinkedIdentityField(view_name='erp_core:company-detail')
     class Meta:
@@ -14,7 +14,7 @@ class CompanySerializer(serializers.HyperlinkedModelSerializer):
         
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     """
-    API endpoint that allows groups to be viewed or edited via hyperlink.
+    API endpoint that allows groups to be viewed via hyperlink.
     """
     url = serializers.HyperlinkedIdentityField(view_name='erp_core:product-detail')
     class Meta:
@@ -24,7 +24,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         
 class InvoiceSerializer(serializers.ModelSerializer):
     """
-    API endpoint that allows groups to be viewed or edited via hyperlink.
+    API endpoint that allows groups to be viewed via hyperlink.
     """
     url = serializers.HyperlinkedIdentityField(view_name='erp_core:invoice-detail')
     class Meta:
@@ -34,7 +34,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
         
 class PaymentSerializer(serializers.ModelSerializer):
     """
-    API endpoint that allows groups to be viewed or edited via hyperlink.
+    API endpoint that allows groups to be viewed via hyperlink.
     """
     url = serializers.HyperlinkedIdentityField(view_name='erp_core:payment-detail')
     class Meta:

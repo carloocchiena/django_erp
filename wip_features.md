@@ -69,7 +69,7 @@ TO BE DONE:
 
 - API with security (https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html). 
     - API creata, compreso che hyperlink model non basandosi su primary key non permetteva di gestire le foreign key dei modelli fatture e pagamenti; risolto usando modelview che invece si basa appunto su PKs.
-    - per quanto riguarda la sicurezza, il punto di partenza è: https://www.django-rest-framework.org/api-guide/permissions/ 
+    - per quanto riguarda la sicurezza, gestito tutto con autenticazione nativa di DRF.
 
 
 altre migliorie e implementazioni notate:
