@@ -15,6 +15,7 @@ router.register(r'payment', views.PaymentViewSet)
 
 urlpatterns = [
     path('', login_required(views.Home.as_view()), name='home'),
+    path('api/v1/', include(router.urls), name='api_v1'),
     path('help/', views.Help.as_view(), name='help'),
     path('feature/', views.Feature.as_view(), name='feature'),
     path('login/', auth_views.LoginView.as_view(template_name='erp_core/login.html'), name='login'),
@@ -43,5 +44,4 @@ urlpatterns = [
     path('filtered_view/check_active/', login_required(views.CheckActive.as_view()), name='check_active'),
     path('filtered_view/check_passive/', login_required(views.CheckPassive.as_view()), name='check_passive'),
     path('csv_export/', login_required(views.CsvExport.as_view()), name='csv_export'),
-    path('api/v1/', include(router.urls)),
 ]
