@@ -67,10 +67,15 @@ TO BE DONE:
 - UI improvement
     - ~~centrare testi bottoni home~~
 
+- API with security (https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html). 
+    - API creata, compreso che hyperlink model non basandosi su primary key non permetteva di gestire le foreign key dei modelli fatture e pagamenti; risolto usando modelview che invece si basa appunto su PKs.
+    - per quanto riguarda la sicurezza, il punto di partenza è: https://www.django-rest-framework.org/api-guide/permissions/ 
+
+
 altre migliorie e implementazioni notate:
 - le fatture vanno indicate come attive\passive. avrebbe senso indicare che se la società è la mia, viene gestito di conseguenza? D'altronde, cosa significa dire che la società è la mia? Andrebbe gestito tramite flag. E il form dovrebbe essere quindi condizionato. Da valutare.
 - add testing
-- API with security (https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html). Direi che va cambiata la logica degli url tra app e root. Vedi https://www.django-rest-framework.org/tutorial/quickstart/
+
 
 DOCS & REFS:
 - https://stackoverflow.com/questions/8616343/django-calculate-the-sum-of-the-column-values-through-query  

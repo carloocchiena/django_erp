@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 
 from . import models, forms, filters, functions, serializers
 
@@ -274,26 +274,38 @@ class CsvExport(View):
 # API MANAGEMENT
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    """Return our API object"""
+    """Return our API object.
+    Endpoint: "http://127.0.0.1:8000/api/v1/company/"
+    """
     queryset = models.Company.objects.all().order_by('name')
     serializer_class = serializers.CompanySerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     
 class ProductViewSet(viewsets.ModelViewSet):
-    """Return our API object"""
+    """Return our API object
+    Endpoint: "http://127.0.0.1:8000/api/v1/product/"
+    """
     queryset = models.Product.objects.all().order_by('name')
     serializer_class = serializers.ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     
 class InvoiceViewSet(viewsets.ModelViewSet):
-    """Return our API object"""
+    """Return our API object
+    Endpoint: "http://127.0.0.1:8000/api/v1/invoice/"
+    """
     queryset = models.Invoice.objects.all()
     serializer_class = serializers.InvoiceSerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     
 class PaymentViewSet(viewsets.ModelViewSet):
-    """Return our API object"""
+    """Return our API object
+    Endpoint: "http://127.0.0.1:8000/api/v1/payment/"
+    """
     queryset = models.Payment.objects.all()
     serializer_class = serializers.PaymentSerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     
