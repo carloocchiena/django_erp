@@ -1,4 +1,4 @@
-![Lines of code](https://img.shields.io/tokei/lines/github.com/carloocchiena/django_erp) ![GitHub Repo stars](https://img.shields.io/github/stars/carloocchiena/django_erp?style=social)
+![Lines of code](https://img.shields.io/tokei/lines/github/carloocchiena/django_erp?style=plastic) ![GitHub Repo stars](https://img.shields.io/github/stars/carloocchiena/django_erp?style=social)
 
 # sERPent - A Django ERP prototype
 Creating an Enterprise Resource Planner (ERP) software that may helps me managing my company. Currently WIP.
@@ -18,7 +18,7 @@ List of all the available feature as per 14 Sept 2022
     <li>Update a company</li>
     <li>Update a product</li>
     <li>Update an invoice</li>
-    
+
 <strong>Automations</strong>
     <li>Private Web APIs (GET, HEAD, OPTIONS) for the whole dataset</li>
     <li>See a list of all the companies, with dynamic filters and CSV export</li>
@@ -32,5 +32,3 @@ List of all the available feature as per 14 Sept 2022
     <li>Report all passive invoices </li>
     <li>Report overdue active invoices </li>
     <li>Report overdue passive invoices </li>
-
-            
