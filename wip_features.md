@@ -1,3 +1,6 @@
+PJ started on 03 of June 2022
+Took me? IDK, about 60 hours as a side project and learning a lot of things while doing it 
+
 USERS:
 - admin
 
@@ -67,14 +70,20 @@ TO BE DONE:
 - UI improvement
     - ~~centrare testi bottoni home~~
 
-- API with security (https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html). 
-    - API creata, compreso che hyperlink model non basandosi su primary key non permetteva di gestire le foreign key dei modelli fatture e pagamenti; risolto usando modelview che invece si basa appunto su PKs.
-    - per quanto riguarda la sicurezza, gestito tutto con autenticazione nativa di DRF.
+- API with security
+    - ~~API creata, compreso che hyperlink model non basandosi su primary key non permetteva di gestire le foreign key dei modelli fatture e pagamenti; risolto usando modelview che invece si basa appunto su PKs.~~
+    - ~~per quanto riguarda la sicurezza, gestito tutto con autenticazione nativa di DRF.~~
 
 
 altre migliorie e implementazioni notate:
 - le fatture vanno indicate come attive\passive. avrebbe senso indicare che se la società è la mia, viene gestito di conseguenza? D'altronde, cosa significa dire che la società è la mia? Andrebbe gestito tramite flag. E il form dovrebbe essere quindi condizionato. Da valutare.
 - add testing
+
+HERE
+- add funzione per clonare elementi https://docs.djangoproject.com/en/4.0/topics/db/queries/#copying-model-instances. come può fuinzionare:
+    - mi serve bottone con link che rimandi all'elemento che voglio clonare (deve essere tutto uguale al modify)
+    - o forse ancora meglio, clono l'elemento e lo rendo visualizzabile poi come oggetto da modificare. così facendo ho un oggetto già creato a db, che l'utente modifica a suo piacimento. di fatto devo replicare lo stream di "modifica" ma prima mettendoci un clone.
+
 
 
 DOCS & REFS:

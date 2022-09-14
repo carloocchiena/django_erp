@@ -66,6 +66,15 @@ class CompanyUpdate(UpdateView):
     success_url = reverse_lazy('erp_core:company_list')
     
     
+# WIP
+    
+class CompanyClone(UpdateView):
+    """Clone a company"""
+    model = models.Company
+    form_class = forms.CompanyForm
+    success_url = reverse_lazy('erp_core:company_list')
+    
+    
 # PRODUCT MANAGEMENT
 
 class ProductCreate(CreateView):
