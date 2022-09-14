@@ -9,8 +9,8 @@ Creating an Enterprise Resource Planner (ERP) software that may helps me managin
 
 List of all the available feature as per 14 Sept 2022
 
-    <ul class="list-group col-6">
-        <li class="list-group-item list-group-item-info"><strong>Data entry</strong></li>
+
+<strong>Data entry</strong></li>
         <li class="list-group-item">Create a new user (backend only)</li>
         <li class="list-group-item">Create a new user group (backend only)</li>
         <li class="list-group-item">Create a new company</li>
