@@ -83,7 +83,7 @@ HERE
 - add funzione per clonare elementi https://docs.djangoproject.com/en/4.0/topics/db/queries/#copying-model-instances. come può fuinzionare:
     - mi serve bottone con link che rimandi all'elemento che voglio clonare (deve essere tutto uguale al modify)
     - o forse ancora meglio, clono l'elemento e lo rendo visualizzabile poi come oggetto da modificare. così facendo ho un oggetto già creato a db, che l'utente modifica a suo piacimento. di fatto devo replicare lo stream di "modifica" ma prima mettendoci un clone.
-    also: https://stackoverflow.com/questions/31579082/django-copy-a-model-object-using-views-and-forms 
+    also: https://stackoverflow.com/questions/59844687/django-clone-model-object-in-class-based-listview
 
 
 

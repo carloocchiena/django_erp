@@ -66,13 +66,20 @@ class CompanyUpdate(UpdateView):
     success_url = reverse_lazy('erp_core:company_list')
     
     
-# WIP
-    
-class CompanyClone(UpdateView):
-    """Clone a company"""
+class CompanyClone(CreateView):
+    """Get object desired from url with record.id and override the object context with it.
+    """
     model = models.Company
     form_class = forms.CompanyForm
     success_url = reverse_lazy('erp_core:company_list')
+    template_name = 'erp_core/company_clone.html'
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.name = f"{self.object.name}_CLONE"
+        self.object.vat_id = 0
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
     
     
 # PRODUCT MANAGEMENT
@@ -106,6 +113,21 @@ class ProductUpdate(UpdateView):
     model = models.Product
     form_class = forms.ProductForm
     success_url = reverse_lazy('erp_core:product_list')
+    
+    
+class ProductClone(CreateView):
+    """Get object desired from url with record.id and override the object context with it.
+    """
+    model = models.Product
+    form_class = forms.ProductForm
+    success_url = reverse_lazy('erp_core:product_list')
+    template_name = 'erp_core/product_clone.html'
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.name = f"{self.object.name}_CLONE"
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 # INVOICE MANAGEMENT
