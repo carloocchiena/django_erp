@@ -63,8 +63,9 @@ TO BE DONE:
     - attenzione, se faccio per modificare la fattura ma non modifico la quantità, viene comunque presa in modo additivo, da ragionare (non so bene come fare ma ci penso su) 
     - ~~riportare anche poi su modifica fatture lo stesso metodo~~
     - ~~creato modello, viste, url, link, ma tutto da testare e sistemare da zero pian pianino e con calma~~
-    - aggiungere filtered views
+    - ~~aggiungere filtered views~~
     - ~~capire come ritornare CSV con i campi sensati senza fare esplodere il metodo __str__~~
+    - ~~funzione di cloning degli elementi~~
 
 - aggiornare lista features
 - UI improvement
@@ -79,11 +80,7 @@ altre migliorie e implementazioni notate:
 - le fatture vanno indicate come attive\passive. avrebbe senso indicare che se la società è la mia, viene gestito di conseguenza? D'altronde, cosa significa dire che la società è la mia? Andrebbe gestito tramite flag. E il form dovrebbe essere quindi condizionato. Da valutare.
 - add testing
 
-HERE
-- add funzione per clonare elementi https://docs.djangoproject.com/en/4.0/topics/db/queries/#copying-model-instances. come può fuinzionare:
-    - mi serve bottone con link che rimandi all'elemento che voglio clonare (deve essere tutto uguale al modify)
-    - o forse ancora meglio, clono l'elemento e lo rendo visualizzabile poi come oggetto da modificare. così facendo ho un oggetto già creato a db, che l'utente modifica a suo piacimento. di fatto devo replicare lo stream di "modifica" ma prima mettendoci un clone.
-    also: https://stackoverflow.com/questions/59844687/django-clone-model-object-in-class-based-listview
+
 
 
 

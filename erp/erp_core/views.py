@@ -156,6 +156,20 @@ class InvoiceUpdate(UpdateView):
     form_class = forms.InvoiceForm
     success_url = reverse_lazy('erp_core:invoice_list')
     
+
+class InvoiceClone(CreateView):
+    """Get object desired from url with record.id and override the object context with it.
+    """
+    model = models.Invoice
+    form_class = forms.InvoiceForm
+    success_url = reverse_lazy('erp_core:invoice_list')
+    template_name = 'erp_core/invoice_clone.html'
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+    
     
 # PAYMENT MANAGEMENT
 
@@ -182,6 +196,20 @@ class PaymentUpdate(UpdateView):
     model = models.Payment
     form_class = forms.PaymentForm
     success_url = reverse_lazy('erp_core:payment_list')
+    
+    
+class PaymentClone(CreateView):
+    """Get object desired from url with record.id and override the object context with it.
+    """
+    model = models.Payment
+    form_class = forms.PaymentForm
+    success_url = reverse_lazy('erp_core:payment_list')
+    template_name = 'erp_core/payment_clone.html'
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
     
     
 # PRE-MADE FILTERS

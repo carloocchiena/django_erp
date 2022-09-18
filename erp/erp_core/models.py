@@ -73,7 +73,7 @@ class Invoice(models.Model):
     status = models.CharField(max_length=10, choices=Status.choices(), default=Status.choices()[0][0])
     notes = models.TextField(blank=True, null=True)
     
-     # wip per salvare quantità prodotto da fattura
+    
     def save(self, *args, **kwargs):
         """Manage saving of the product quantity"""
         super().save(*args, **kwargs)
