@@ -1,6 +1,7 @@
 from django.db import IntegrityError
+from django.test import TestCase, Client
+from rest_framework.test import RequestsClient
 
-from django.test import TestCase
 
 from . import models, forms
 
@@ -62,4 +63,28 @@ class InvoiceTestCase(TestCase):
 
         self.assertEqual(alfa_invoice.kind, 'ACTIVE')
         self.assertEqual(alfa_product.quantity, 55)
-                            
+        
+    
+class PaymentTestCase(TestCase):
+    """Test the generation of a new payment"""
+    def setUp(self):
+        models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+        models.Company.objects.create(name='MY COMPANY', vat_id='012345', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+        models.Payment.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), kind='ACTIVE', date='2022-01-01', amount=1000, notes='TBA')
+        
+    def test_payment_set_up(self):
+        alfa_payment = models.Payment.objects.get(sender=1)
+
+        self.assertEqual(alfa_payment.amount, 1000)
+
+
+# API test cases
+
+class ApiTestCase(TestCase):
+    def test_api_get(self):
+        client = RequestsClient()
+        response = self.client.get('http://127.0.0.1:8000/api/v1/company/')
+        self.assertEqual(response.status_code, 200) # aggiungere auth
+                

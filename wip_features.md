@@ -74,6 +74,7 @@ TO BE DONE:
 - API with security
     - ~~API creata, compreso che hyperlink model non basandosi su primary key non permetteva di gestire le foreign key dei modelli fatture e pagamenti; risolto usando modelview che invece si basa appunto su PKs.~~
     - ~~per quanto riguarda la sicurezza, gestito tutto con autenticazione nativa di DRF.~~
+    - unit tests: https://www.youtube.com/watch?v=1FqxfnlQPi8 & https://www.django-rest-framework.org/api-guide/testing/ 
 
 
 altre migliorie e implementazioni notate:
@@ -91,4 +92,7 @@ DOCS & REFS:
 - https://stackoverflow.com/questions/29166148/how-to-update-a-model-instance-in-another-model-save-method-in-django
 - https://whitenoise.evans.io/en/stable/index.html
 - https://www.django-rest-framework.org/api-guide/authentication/ 
+
+
+
 
