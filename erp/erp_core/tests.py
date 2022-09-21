@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.test import TestCase, Client
-from rest_framework.test import RequestsClient
 
+from rest_framework.test import APITestCase, force_authenticate
 
 from . import models, forms
 
@@ -21,6 +22,95 @@ class CompanyTestCase(TestCase):
         
         self.assertEqual(alfa.vat_id, '123456')
         self.assertEqual(beta.industry, 'TECH')
+        
+    def test_company_name_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('name').verbose_name
+        
+        self.assertEqual(field_label, 'name')
+        
+    def test_company_name_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('name').max_length
+        
+        self.assertEqual(max_length, 100)
+    
+    def test_company_vat_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('vat_id').verbose_name
+        
+        self.assertEqual(field_label, 'vat id')
+        
+    def test_company_vat_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('vat_id').max_length
+        
+        self.assertEqual(max_length, 15)
+        
+    def test_company_industry_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('industry').verbose_name
+        
+        self.assertEqual(field_label, 'industry')
+        
+    def test_company_industry_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('industry').max_length
+        
+        self.assertEqual(max_length, 15)
+        
+    def test_company_city_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('city').verbose_name
+        
+        self.assertEqual(field_label, 'city')
+        
+    def test_company_city_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('city').max_length
+        
+        self.assertEqual(max_length, 20)
+        
+    def test_company_address_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('address').verbose_name
+        
+        self.assertEqual(field_label, 'address')
+        
+    def test_company_address_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('address').max_length
+        
+        self.assertEqual(max_length, 100)
+        
+    def test_company_zip_code_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('zip_code').verbose_name
+        
+        self.assertEqual(field_label, 'zip code')
+        
+    def test_company_zip_code_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('zip_code').max_length
+        
+        self.assertEqual(max_length, 10)
+        
+    def test_company_country_label(self):
+        company = models.Company.objects.get(id=1)
+        field_label = company._meta.get_field('country').verbose_name
+        
+        self.assertEqual(field_label, 'country')
+        
+    def test_company_country_length(self):
+        company = models.Company.objects.get(id=1)
+        max_length = company._meta.get_field('country').max_length
+        
+        self.assertEqual(max_length, 10)
+        
+    def test_object_name(self):
+        company = models.Company.objects.get(id=1)
+        expected_object_name = f'{company.name.upper()}'
+        self.assertEqual(str(company), expected_object_name)        
         
     
 class DuplicatedCompanyTestCase(TestCase):
@@ -82,9 +172,31 @@ class PaymentTestCase(TestCase):
 
 # API test cases
 
-class ApiTestCase(TestCase):
-    def test_api_get(self):
-        client = RequestsClient()
-        response = self.client.get('http://127.0.0.1:8000/api/v1/company/')
-        self.assertEqual(response.status_code, 200) # aggiungere auth
+class ApiTestCase(APITestCase):
+    """Test connection to APIs"""
+    def setUp(self):
+        self.username = 'john_doe'
+        self.password = 'foobar'
+        self.user = User.objects.create(username=self.username, password=self.password)
+        self.client.force_authenticate(user=self.user)
+        
+        
+    def test_company_api_get(self):
+        response = self.client.get('/api/v1/company/')
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_api_get(self):
+        response = self.client.get('/api/v1/product/')
+        self.assertEqual(response.status_code, 200)
+        
+    def test_invoice_api_get(self):
+        response = self.client.get('/api/v1/invoice/')
+        self.assertEqual(response.status_code, 200)
+        
+    def test_payment_api_get(self):
+        response = self.client.get('/api/v1/payment/')
+        self.assertEqual(response.status_code, 200)
+        
+                
+                
                 
