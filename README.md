@@ -3,6 +3,22 @@
 # sERPent - A Django ERP prototype
 Creating an Enterprise Resource Planner (ERP) software that may helps me managing my company. Currently WIP.
 
+## Environment setup and quick-start
+
+**About my prod env:** code has been build and tested on Django 4.0.2 and Python 3.8.8 running on Win11 machine.
+
+1. Clone the project: `git clone https://github.com/carloocchiena/django_erp.git`.
+2. Create a virtual environment (conda `conda create -n my_env pip python=3.8`) (python `python3 -m venv my_env`).
+3. Activate your virtual environment: (conda`conda activate my_env`) (Linux/MacOS `source my_env/bin/activate`) (Windows `source my_env/Scripts/activate`).
+4. Install requirements.txt: `pip install -r requirements.txt`.
+5. Create a `.env` file with your SECRET KEY
+6. Navigate to the folder you want (`landing_page`, or `portfolio` or `social`).
+7. Make migrations with: `python manage.py makemigrations` and apply them with  `python manage.py migrate`.
+8. Let's start the engine with `python manage.py runserver`.
+9. Have fun! :)
+
+## Business Logic
+
 
 
 ## Features
