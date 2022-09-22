@@ -19,7 +19,10 @@ Creating an Enterprise Resource Planner (ERP) software that may helps me managin
 
 ## Business Logic
 
-
+The underlying idea is being able to quickly create templates for Companies and Products and cloning them upon necessity.
+Payments and Invoices are expected to be inserted from time to time.
+The filtered views allow to have a quick overview of how's the business going, specifically having in mind the daily checks you have to perform on outstanding credits and debits and invoices. 
+I may be willing to extend reporting features a bit, it depends from the free time I have to allocate on this project. 
 
 ## Features
 
@@ -55,6 +58,11 @@ List of all the available feature as per 14 Sept 2022
     <li>Report all passive invoices </li>
     <li>Report overdue active invoices </li>
     <li>Report overdue passive invoices </li>
+
+## Walkthrough
+I created also some additional walktrought that should help you configuring your Django project:<br>
+[The django walkthrough](django_walktrought.md).<br>
+[A list of useful commands](CLI_commands.md).<br>
 
 ## Contribute
 Every feedback and contribution is welcome.

@@ -24,93 +24,107 @@ class CompanyTestCase(TestCase):
         self.assertEqual(beta.industry, 'TECH')
         
     def test_company_name_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('name').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('name').verbose_name
         
         self.assertEqual(field_label, 'name')
         
     def test_company_name_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('name').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('name').max_length
         
         self.assertEqual(max_length, 100)
     
     def test_company_vat_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('vat_id').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('vat_id').verbose_name
         
         self.assertEqual(field_label, 'vat id')
         
     def test_company_vat_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('vat_id').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('vat_id').max_length
         
         self.assertEqual(max_length, 15)
         
     def test_company_industry_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('industry').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('industry').verbose_name
         
         self.assertEqual(field_label, 'industry')
         
     def test_company_industry_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('industry').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('industry').max_length
         
         self.assertEqual(max_length, 15)
         
     def test_company_city_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('city').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('city').verbose_name
         
         self.assertEqual(field_label, 'city')
         
     def test_company_city_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('city').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('city').max_length
         
         self.assertEqual(max_length, 20)
         
     def test_company_address_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('address').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('address').verbose_name
         
         self.assertEqual(field_label, 'address')
         
     def test_company_address_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('address').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('address').max_length
         
         self.assertEqual(max_length, 100)
         
     def test_company_zip_code_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('zip_code').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('zip_code').verbose_name
         
         self.assertEqual(field_label, 'zip code')
         
     def test_company_zip_code_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('zip_code').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('zip_code').max_length
         
         self.assertEqual(max_length, 10)
         
     def test_company_country_label(self):
-        company = models.Company.objects.get(id=1)
-        field_label = company._meta.get_field('country').verbose_name
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('country').verbose_name
         
         self.assertEqual(field_label, 'country')
         
     def test_company_country_length(self):
-        company = models.Company.objects.get(id=1)
-        max_length = company._meta.get_field('country').max_length
+        obj = models.Company.objects.get(id=1)
+        max_length = obj._meta.get_field('country').max_length
         
         self.assertEqual(max_length, 10)
         
+    def test_company_website_label(self):
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('website').verbose_name
+        
+        self.assertEqual(field_label, 'website')
+        
+        
+    def test_company_notes_label(self):
+        obj = models.Company.objects.get(id=1)
+        field_label = obj._meta.get_field('notes').verbose_name
+        
+        self.assertEqual(field_label, 'notes')
+        
     def test_object_name(self):
-        company = models.Company.objects.get(id=1)
-        expected_object_name = f'{company.name.upper()}'
-        self.assertEqual(str(company), expected_object_name)        
+        obj = models.Company.objects.get(id=1)
+        expected_object_name = f'{obj.name.upper()}'
+        
+        self.assertEqual(str(obj), expected_object_name)        
         
     
 class DuplicatedCompanyTestCase(TestCase):
@@ -134,6 +148,52 @@ class ProductTestCase(TestCase):
         alfa = models.Product.objects.get(name='ALFA')
         
         self.assertEqual(alfa.quantity, 50)
+        
+    def test_product_name_label(self):
+        obj = models.Product.objects.get(id=1)
+        field_label = obj._meta.get_field('name').verbose_name
+        
+        self.assertEqual(field_label, 'name')
+        
+    def test_product_name_length(self):
+        obj = models.Product.objects.get(id=1)
+        max_length = obj._meta.get_field('name').max_length
+        
+        self.assertEqual(max_length, 30)
+        
+        
+    def test_product_description_label(self):
+        obj = models.Product.objects.get(id=1)
+        field_label = obj._meta.get_field('description').verbose_name
+        
+        self.assertEqual(field_label, 'description')
+        
+    def test_product_description_length(self):
+        obj = models.Product.objects.get(id=1)
+        max_length = obj._meta.get_field('description').max_length
+        
+        self.assertEqual(max_length, 500)
+        
+        
+    def test_product_quantity_label(self):
+        obj = models.Product.objects.get(id=1)
+        field_label = obj._meta.get_field('quantity').verbose_name
+        
+        self.assertEqual(field_label, 'quantity')
+        
+        
+    def test_product_price_label(self):
+        obj = models.Product.objects.get(id=1)
+        field_label = obj._meta.get_field('price').verbose_name
+        
+        self.assertEqual(field_label, 'price')
+        
+        
+    def test_product_refill_label(self):
+        obj = models.Product.objects.get(id=1)
+        field_label = obj._meta.get_field('refill').verbose_name
+        
+        self.assertEqual(field_label, 'refill')
         
         
 class InvoiceTestCase(TestCase):
