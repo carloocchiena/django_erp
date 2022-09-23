@@ -78,7 +78,7 @@ TO BE DONE:
 
 Unit testing:
 - https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
-- ultimare testing db per  fatture, pagamenti
+- https://adamj.eu/tech/2020/06/15/how-to-unit-test-a-django-form/
 - procedere con form e viste 
 
 

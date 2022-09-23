@@ -12,7 +12,7 @@ Creating an Enterprise Resource Planner (ERP) software that may helps me managin
 3. Activate your virtual environment: (conda`conda activate my_env`) (Linux/MacOS `source my_env/bin/activate`) (Windows `source my_env/Scripts/activate`).
 4. Install requirements.txt: `pip install -r requirements.txt`.
 5. Create a `.env` file with your SECRET KEY
-6. Navigate to the folder you want (`landing_page`, or `portfolio` or `social`).
+6. Navigate to the ``erp` folder you want.
 7. Make migrations with: `python manage.py makemigrations` and apply them with  `python manage.py migrate`.
 8. Let's start the engine with `python manage.py runserver`.
 9. Have fun! :)
@@ -23,6 +23,12 @@ The underlying idea is being able to quickly create templates for Companies and 
 Payments and Invoices are expected to be inserted from time to time.
 The filtered views allow to have a quick overview of how's the business going, specifically having in mind the daily checks you have to perform on outstanding credits and debits and invoices. 
 I may be willing to extend reporting features a bit, it depends from the free time I have to allocate on this project. 
+
+## Testing
+
+To run the automated test, input `python manage.py test  --verbosity=2`.
+
+At the moment there are more than 55 test cases, covering from models, to forms, to views, and their underlying logics.
 
 ## Features
 

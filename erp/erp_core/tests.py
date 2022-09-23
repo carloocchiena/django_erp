@@ -215,6 +215,91 @@ class InvoiceTestCase(TestCase):
         self.assertEqual(alfa_product.quantity, 55)
         
     
+    def test_invoice_sender_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('sender').verbose_name
+        
+        self.assertEqual(field_label, 'sender')    
+        
+    
+    def test_invoice_receiver_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('receiver').verbose_name
+        
+        self.assertEqual(field_label, 'receiver')   
+        
+        
+    def test_invoice_date_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('date').verbose_name
+        
+        self.assertEqual(field_label, 'date')   
+        
+        
+    def test_invoice_number_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('number').verbose_name
+        
+        self.assertEqual(field_label, 'number')
+        
+        
+    def test_invoice_amount_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('amount').verbose_name
+        
+        self.assertEqual(field_label, 'amount')
+        
+        
+    def test_invoice_kind_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('kind').verbose_name
+        
+        self.assertEqual(field_label, 'kind')
+        
+        
+    def test_invoice_product_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('product').verbose_name
+        
+        self.assertEqual(field_label, 'product')
+        
+        
+    def test_invoice_product_quantity_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('product_quantity').verbose_name
+        
+        self.assertEqual(field_label, 'product quantity')
+        
+        
+    def test_invoice_due_date_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('due_date').verbose_name
+        
+        self.assertEqual(field_label, 'due date')
+        
+        
+    def test_invoice_status_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('status').verbose_name
+        
+        self.assertEqual(field_label, 'status')
+        
+        
+    def test_invoice_status_length(self):
+        obj = models.Invoice.objects.get(id=1)
+        max_length = obj._meta.get_field('status').max_length
+        
+        self.assertEqual(max_length, 10)
+        
+        
+    def test_invoice_notes_label(self):
+        obj = models.Invoice.objects.get(id=1)
+        field_label = obj._meta.get_field('notes').verbose_name
+        
+        self.assertEqual(field_label, 'notes')
+               
+    
+    
 class PaymentTestCase(TestCase):
     """Test the generation of a new payment"""
     def setUp(self):
@@ -228,6 +313,49 @@ class PaymentTestCase(TestCase):
         alfa_payment = models.Payment.objects.get(sender=1)
 
         self.assertEqual(alfa_payment.amount, 1000)
+
+
+    def test_payment_sender_label(self):
+        obj = models.Payment.objects.get(id=1)
+        field_label = obj._meta.get_field('sender').verbose_name
+        
+        self.assertEqual(field_label, 'sender')
+        
+        
+    def test_payment_receiver_label(self):
+        obj = models.Payment.objects.get(id=1)
+        field_label = obj._meta.get_field('receiver').verbose_name
+        
+        self.assertEqual(field_label, 'receiver')
+        
+        
+    def test_payment_kind_label(self):
+        obj = models.Payment.objects.get(id=1)
+        field_label = obj._meta.get_field('kind').verbose_name
+        
+        self.assertEqual(field_label, 'kind')
+        
+        
+    def test_payment_date_label(self):
+        obj = models.Payment.objects.get(id=1)
+        field_label = obj._meta.get_field('date').verbose_name
+        
+        self.assertEqual(field_label, 'date')
+        
+        
+    def test_payment_amount_label(self):
+        obj = models.Payment.objects.get(id=1)
+        field_label = obj._meta.get_field('amount').verbose_name
+        
+        self.assertEqual(field_label, 'amount')
+        
+        
+    def test_payment_notes_label(self):
+        obj = models.Payment.objects.get(id=1)
+        field_label = obj._meta.get_field('notes').verbose_name
+        
+        self.assertEqual(field_label, 'notes')
+            
 
 
 # API test cases
@@ -257,6 +385,70 @@ class ApiTestCase(APITestCase):
         response = self.client.get('/api/v1/payment/')
         self.assertEqual(response.status_code, 200)
         
+    
+    
+# Form test cases
+
+class CompanyFormTestCase(TestCase):
+    """Check correctness of Company form"""
+    def test_company_form(self):
+        form = forms.CompanyForm()
                 
+        self.assertEqual(form.fields['name'].label, 'Name')
+        self.assertEqual(form.fields['vat_id'].label, 'Vat id')
+        self.assertEqual(form.fields['industry'].label, 'Industry') 
+        self.assertEqual(form.fields['city'].label, 'City')
+        self.assertEqual(form.fields['address'].label, 'Address')
+        self.assertEqual(form.fields['zip_code'].label, 'Zip code')
+        self.assertEqual(form.fields['country'].label, 'Country')
+        self.assertEqual(form.fields['website'].label, 'Website')
+        self.assertEqual(form.fields['notes'].label, 'Notes')      
+        
+        
+        
+class ProductFormTestCase(TestCase):
+    """Check correctness of Product form"""
+    def test_product_form(self):
+        form = forms.ProductForm()
+                
+        self.assertEqual(form.fields['name'].label, 'Name')
+        self.assertEqual(form.fields['description'].label, 'Description')
+        self.assertEqual(form.fields['quantity'].label, 'Quantity') 
+        self.assertEqual(form.fields['price'].label, 'Price')
+        self.assertEqual(form.fields['refill'].label, 'Refill')
+        
+        
+        
+class InvoiceFormTestCase(TestCase):
+    """Check correctness of Invoice form"""
+    def test_invoice_form(self):
+        form = forms.InvoiceForm()
+                
+        self.assertEqual(form.fields['sender'].label, 'Sender')
+        self.assertEqual(form.fields['receiver'].label, 'Receiver')
+        self.assertEqual(form.fields['date'].label, 'Date') 
+        self.assertEqual(form.fields['number'].label, 'Number')
+        self.assertEqual(form.fields['amount'].label, 'Amount')
+        self.assertEqual(form.fields['kind'].label, 'Kind')
+        self.assertEqual(form.fields['product'].label, 'Product')
+        self.assertEqual(form.fields['product_quantity'].label, 'Product quantity')
+        self.assertEqual(form.fields['due_date'].label, 'Due date')
+        self.assertEqual(form.fields['status'].label, 'Status')
+        self.assertEqual(form.fields['notes'].label, 'Notes')
+        
+        
+        
+class PaymentFormTestCase(TestCase):
+    """Check correctness of Invoice form"""
+    def test_payment_form(self):
+        form = forms.PaymentForm()
+                
+        self.assertEqual(form.fields['sender'].label, 'Sender')
+        self.assertEqual(form.fields['receiver'].label, 'Receiver')
+        self.assertEqual(form.fields['date'].label, 'Date') 
+        self.assertEqual(form.fields['amount'].label, 'Amount')
+        self.assertEqual(form.fields['kind'].label, 'Kind')
+        self.assertEqual(form.fields['notes'].label, 'Notes')
+       
                 
                 
