@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.test import TestCase, Client
+from django.urls import reverse
 
 from rest_framework.test import APITestCase, force_authenticate
 
-from . import models, forms
+from . import models, forms, views
 
 
 # Model test cases
@@ -112,8 +113,7 @@ class CompanyTestCase(TestCase):
         field_label = obj._meta.get_field('website').verbose_name
         
         self.assertEqual(field_label, 'website')
-        
-        
+                
     def test_company_notes_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('notes').verbose_name
@@ -160,8 +160,7 @@ class ProductTestCase(TestCase):
         max_length = obj._meta.get_field('name').max_length
         
         self.assertEqual(max_length, 30)
-        
-        
+                
     def test_product_description_label(self):
         obj = models.Product.objects.get(id=1)
         field_label = obj._meta.get_field('description').verbose_name
@@ -173,22 +172,19 @@ class ProductTestCase(TestCase):
         max_length = obj._meta.get_field('description').max_length
         
         self.assertEqual(max_length, 500)
-        
-        
+                
     def test_product_quantity_label(self):
         obj = models.Product.objects.get(id=1)
         field_label = obj._meta.get_field('quantity').verbose_name
         
         self.assertEqual(field_label, 'quantity')
-        
-        
+                
     def test_product_price_label(self):
         obj = models.Product.objects.get(id=1)
         field_label = obj._meta.get_field('price').verbose_name
         
         self.assertEqual(field_label, 'price')
-        
-        
+                
     def test_product_refill_label(self):
         obj = models.Product.objects.get(id=1)
         field_label = obj._meta.get_field('refill').verbose_name
@@ -205,7 +201,7 @@ class InvoiceTestCase(TestCase):
         
         models.Product.objects.create(name='ALFA', description='A PRODUCT', quantity=50, price=100, refill=True)
         
-        models.Invoice.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), date='2022-01-01', number='1', amount=1000, kind='ACTIVE', product=models.Product.objects.get(name='ALFA'), product_quantity=5, due_date='2022-01-01', status='PAID', notes='')
+        models.Invoice.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), date='2019-03-10 11:16:09.184106+01:00', number='1', amount=1000, kind='ACTIVE', product=models.Product.objects.get(name='ALFA'), product_quantity=5, due_date='2019-03-10 11:16:09.184106+01:00', status='PAID', notes='')
         
     def test_invoice_set_up(self):
         alfa_invoice = models.Invoice.objects.get(sender=1)
@@ -213,91 +209,79 @@ class InvoiceTestCase(TestCase):
 
         self.assertEqual(alfa_invoice.kind, 'ACTIVE')
         self.assertEqual(alfa_product.quantity, 55)
-        
-    
+            
     def test_invoice_sender_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('sender').verbose_name
         
         self.assertEqual(field_label, 'sender')    
-        
-    
+            
     def test_invoice_receiver_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('receiver').verbose_name
         
         self.assertEqual(field_label, 'receiver')   
-        
-        
+                
     def test_invoice_date_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('date').verbose_name
         
         self.assertEqual(field_label, 'date')   
-        
-        
+                
     def test_invoice_number_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('number').verbose_name
         
         self.assertEqual(field_label, 'number')
-        
-        
+                
     def test_invoice_amount_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('amount').verbose_name
         
         self.assertEqual(field_label, 'amount')
-        
-        
+                
     def test_invoice_kind_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('kind').verbose_name
         
         self.assertEqual(field_label, 'kind')
-        
-        
+                
     def test_invoice_product_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('product').verbose_name
         
         self.assertEqual(field_label, 'product')
-        
-        
+                
     def test_invoice_product_quantity_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('product_quantity').verbose_name
         
         self.assertEqual(field_label, 'product quantity')
-        
-        
+                
     def test_invoice_due_date_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('due_date').verbose_name
         
         self.assertEqual(field_label, 'due date')
-        
-        
+                
     def test_invoice_status_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('status').verbose_name
         
         self.assertEqual(field_label, 'status')
-        
-        
+                
     def test_invoice_status_length(self):
         obj = models.Invoice.objects.get(id=1)
         max_length = obj._meta.get_field('status').max_length
         
         self.assertEqual(max_length, 10)
-        
-        
+                
     def test_invoice_notes_label(self):
         obj = models.Invoice.objects.get(id=1)
         field_label = obj._meta.get_field('notes').verbose_name
         
         self.assertEqual(field_label, 'notes')
-               
+                   
     
     
 class PaymentTestCase(TestCase):
@@ -307,49 +291,43 @@ class PaymentTestCase(TestCase):
         
         models.Company.objects.create(name='MY COMPANY', vat_id='012345', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
         
-        models.Payment.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), kind='ACTIVE', date='2022-01-01', amount=1000, notes='TBA')
+        models.Payment.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), kind='ACTIVE', date='2019-03-10 11:16:09.184106+01:00', amount=1000, notes='TBA')
         
     def test_payment_set_up(self):
         alfa_payment = models.Payment.objects.get(sender=1)
 
         self.assertEqual(alfa_payment.amount, 1000)
 
-
     def test_payment_sender_label(self):
         obj = models.Payment.objects.get(id=1)
         field_label = obj._meta.get_field('sender').verbose_name
         
         self.assertEqual(field_label, 'sender')
-        
-        
+                
     def test_payment_receiver_label(self):
         obj = models.Payment.objects.get(id=1)
         field_label = obj._meta.get_field('receiver').verbose_name
         
         self.assertEqual(field_label, 'receiver')
-        
-        
+                
     def test_payment_kind_label(self):
         obj = models.Payment.objects.get(id=1)
         field_label = obj._meta.get_field('kind').verbose_name
         
         self.assertEqual(field_label, 'kind')
-        
-        
+                
     def test_payment_date_label(self):
         obj = models.Payment.objects.get(id=1)
         field_label = obj._meta.get_field('date').verbose_name
         
         self.assertEqual(field_label, 'date')
-        
-        
+                
     def test_payment_amount_label(self):
         obj = models.Payment.objects.get(id=1)
         field_label = obj._meta.get_field('amount').verbose_name
         
         self.assertEqual(field_label, 'amount')
-        
-        
+                
     def test_payment_notes_label(self):
         obj = models.Payment.objects.get(id=1)
         field_label = obj._meta.get_field('notes').verbose_name
@@ -367,8 +345,7 @@ class ApiTestCase(APITestCase):
         self.password = 'foobar'
         self.user = User.objects.create(username=self.username, password=self.password)
         self.client.force_authenticate(user=self.user)
-        
-        
+                
     def test_company_api_get(self):
         response = self.client.get('/api/v1/company/')
         self.assertEqual(response.status_code, 200)
@@ -403,8 +380,8 @@ class CompanyFormTestCase(TestCase):
         self.assertEqual(form.fields['country'].label, 'Country')
         self.assertEqual(form.fields['website'].label, 'Website')
         self.assertEqual(form.fields['notes'].label, 'Notes')      
-        
-        
+         
+                
         
 class ProductFormTestCase(TestCase):
     """Check correctness of Product form"""
@@ -450,5 +427,121 @@ class PaymentFormTestCase(TestCase):
         self.assertEqual(form.fields['kind'].label, 'Kind')
         self.assertEqual(form.fields['notes'].label, 'Notes')
        
+     
+     
+# Views test cases
+
+class CompanyViewTest(TestCase):
+    """Test company views"""
+    
+    username = 'test_user'
+    password = '!y6KD@HbEu4TZf'
+    
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        
+        test_user.save()
+        
+        models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+    def test_redirect_if_not_logged(self):
+        response = self.client.get(reverse('erp_core:company_list'))
+        
+        self.assertRedirects(response, '/login/?next=/company_list/')         
+        
+    def test_user_login(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(reverse('erp_core:home'))
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_help_page(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/help/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+            
+    def test_feature_page(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/feature/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+            
+    def test_company_list(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/company_list/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_create_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/company_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_create_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.post('/company_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_detail(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_slug = models.Company.objects.get(id=1).vat_id
+        response = self.client.get(f'/company_detail/{obj_slug}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_update_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Company.objects.get(id=1).id
+        response = self.client.get(f'/company_update/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_update_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Company.objects.get(id=1).id
+        response = self.client.post(f'/company_update/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_clone_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Company.objects.get(id=1).id
+        response = self.client.get(f'/company_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_company_clone_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Company.objects.get(id=1).id
+        response = self.client.post(f'/company_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+                   
                 
-                
+class ProductViewTest(TestCase):
+    """Test product views"""
+    
+    username = 'test_user'
+    password = '!y6KD@HbEu4TZf'
+    
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        
+        test_user.save()
+        
+        models.Product.objects.create(name='ALFA', description='A PRODUCT', quantity='50', price='100', refill=True)
+        

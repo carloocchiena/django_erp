@@ -26,9 +26,9 @@ I may be willing to extend reporting features a bit, it depends from the free ti
 
 ## Testing
 
-To run the automated test, input `python manage.py test  --verbosity=2`.
+To run the automated test, input `python manage.py test --parallel auto --verbosity=2`.
 
-At the moment there are more than 55 test cases, covering from models, to forms, to views, and their underlying logics.
+At the moment there are more than 70 test cases, covering from models, to forms, to views, and their underlying logics.
 
 ## Features
 

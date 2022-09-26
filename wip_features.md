@@ -77,9 +77,8 @@ TO BE DONE:
     - ~~unit tests: https://www.youtube.com/watch?v=1FqxfnlQPi8 & https://www.django-rest-framework.org/api-guide/testing/~~ 
 
 Unit testing:
-- https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
-- https://adamj.eu/tech/2020/06/15/how-to-unit-test-a-django-form/
-- procedere con form e viste 
+
+- procedere con le viste per prodotti pagamenti fatture 
 
 
 altre migliorie e implementazioni notate:
@@ -98,6 +97,7 @@ DOCS & REFS:
 - https://whitenoise.evans.io/en/stable/index.html
 - https://www.django-rest-framework.org/api-guide/authentication/ 
 - https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing 
+- https://adamj.eu/tech/2020/06/15/how-to-unit-test-a-django-form/ 
 
 
 
