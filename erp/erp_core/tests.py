@@ -11,110 +11,110 @@ from . import models, forms, views
 # Model test cases
 
 class CompanyTestCase(TestCase):
-    """Test the generation of a new company"""
+    """Test the generation of a new product"""
     def setUp(self):
         models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
         
         models.Company.objects.create(name='BETA', vat_id='1234567', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
         
-    def test_company_set_up(self):
+    def test_product_set_up(self):
         alfa = models.Company.objects.get(name='ALFA')
         beta = models.Company.objects.get(name='BETA')
         
         self.assertEqual(alfa.vat_id, '123456')
         self.assertEqual(beta.industry, 'TECH')
         
-    def test_company_name_label(self):
+    def test_product_name_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('name').verbose_name
         
         self.assertEqual(field_label, 'name')
         
-    def test_company_name_length(self):
+    def test_product_name_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('name').max_length
         
         self.assertEqual(max_length, 100)
     
-    def test_company_vat_label(self):
+    def test_product_vat_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('vat_id').verbose_name
         
         self.assertEqual(field_label, 'vat id')
         
-    def test_company_vat_length(self):
+    def test_product_vat_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('vat_id').max_length
         
         self.assertEqual(max_length, 15)
         
-    def test_company_industry_label(self):
+    def test_product_industry_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('industry').verbose_name
         
         self.assertEqual(field_label, 'industry')
         
-    def test_company_industry_length(self):
+    def test_product_industry_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('industry').max_length
         
         self.assertEqual(max_length, 15)
         
-    def test_company_city_label(self):
+    def test_product_city_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('city').verbose_name
         
         self.assertEqual(field_label, 'city')
         
-    def test_company_city_length(self):
+    def test_product_city_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('city').max_length
         
         self.assertEqual(max_length, 20)
         
-    def test_company_address_label(self):
+    def test_product_address_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('address').verbose_name
         
         self.assertEqual(field_label, 'address')
         
-    def test_company_address_length(self):
+    def test_product_address_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('address').max_length
         
         self.assertEqual(max_length, 100)
         
-    def test_company_zip_code_label(self):
+    def test_product_zip_code_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('zip_code').verbose_name
         
         self.assertEqual(field_label, 'zip code')
         
-    def test_company_zip_code_length(self):
+    def test_product_zip_code_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('zip_code').max_length
         
         self.assertEqual(max_length, 10)
         
-    def test_company_country_label(self):
+    def test_product_country_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('country').verbose_name
         
         self.assertEqual(field_label, 'country')
         
-    def test_company_country_length(self):
+    def test_product_country_length(self):
         obj = models.Company.objects.get(id=1)
         max_length = obj._meta.get_field('country').max_length
         
         self.assertEqual(max_length, 10)
         
-    def test_company_website_label(self):
+    def test_product_website_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('website').verbose_name
         
         self.assertEqual(field_label, 'website')
                 
-    def test_company_notes_label(self):
+    def test_product_notes_label(self):
         obj = models.Company.objects.get(id=1)
         field_label = obj._meta.get_field('notes').verbose_name
         
@@ -127,6 +127,7 @@ class CompanyTestCase(TestCase):
         self.assertEqual(str(obj), expected_object_name)        
         
     
+    
 class DuplicatedCompanyTestCase(TestCase):
     """Test the generation of two companies with same vat_id"""
     def vat_is_duplicated(self, vat_id):
@@ -137,6 +138,7 @@ class DuplicatedCompanyTestCase(TestCase):
     def test_duplicate_vat(self):    
         with self.assertRaises(IntegrityError):
             self.vat_is_duplicated('123456')
+            
             
             
 class ProductTestCase(TestCase):
@@ -190,6 +192,7 @@ class ProductTestCase(TestCase):
         field_label = obj._meta.get_field('refill').verbose_name
         
         self.assertEqual(field_label, 'refill')
+        
         
         
 class InvoiceTestCase(TestCase):
@@ -346,8 +349,8 @@ class ApiTestCase(APITestCase):
         self.user = User.objects.create(username=self.username, password=self.password)
         self.client.force_authenticate(user=self.user)
                 
-    def test_company_api_get(self):
-        response = self.client.get('/api/v1/company/')
+    def test_product_api_get(self):
+        response = self.client.get('/api/v1/product/')
         self.assertEqual(response.status_code, 200)
         
     def test_product_api_get(self):
@@ -368,7 +371,7 @@ class ApiTestCase(APITestCase):
 
 class CompanyFormTestCase(TestCase):
     """Check correctness of Company form"""
-    def test_company_form(self):
+    def test_product_form(self):
         form = forms.CompanyForm()
                 
         self.assertEqual(form.fields['name'].label, 'Name')
@@ -431,8 +434,8 @@ class PaymentFormTestCase(TestCase):
      
 # Views test cases
 
-class CompanyViewTest(TestCase):
-    """Test company views"""
+class MainViewTest(TestCase):
+    """Test product views"""
     
     username = 'test_user'
     password = '!y6KD@HbEu4TZf'
@@ -445,9 +448,9 @@ class CompanyViewTest(TestCase):
         models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
         
     def test_redirect_if_not_logged(self):
-        response = self.client.get(reverse('erp_core:company_list'))
+        response = self.client.get(reverse('erp_core:product_list'))
         
-        self.assertRedirects(response, '/login/?next=/company_list/')         
+        self.assertRedirects(response, '/login/?next=/product_list/')         
         
     def test_user_login(self):
         login = self.client.login(username=self.username, password=self.password)
@@ -469,7 +472,29 @@ class CompanyViewTest(TestCase):
         
         self.assertEqual(login, True)
         self.assertEqual(response.status_code, 200)
-            
+        
+    def test_filtered_view_page(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/filtered_view/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)   
+      
+
+
+class CompanyViewTest(TestCase):
+    """Test product views"""
+    
+    username = 'test_user'
+    password = '!y6KD@HbEu4TZf'
+    
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        
+        test_user.save()
+        
+        models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')  
+                
     def test_company_list(self):
         login = self.client.login(username=self.username, password=self.password)
         response = self.client.get('/company_list/')
@@ -530,7 +555,8 @@ class CompanyViewTest(TestCase):
         
         self.assertEqual(login, True)
         self.assertEqual(response.status_code, 200)
-                   
+        
+                        
                 
 class ProductViewTest(TestCase):
     """Test product views"""
@@ -544,4 +570,245 @@ class ProductViewTest(TestCase):
         test_user.save()
         
         models.Product.objects.create(name='ALFA', description='A PRODUCT', quantity='50', price='100', refill=True)
+    
+    def test_product_list(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/product_list/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_create_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/product_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_create_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.post('/product_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_detail(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Product.objects.get(id=1).id
+        response = self.client.get(f'/product_detail/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_update_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Product.objects.get(id=1).id
+        response = self.client.get(f'/product_update/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_update_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Product.objects.get(id=1).id
+        response = self.client.post(f'/product_update/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_clone_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Product.objects.get(id=1).id
+        response = self.client.get(f'/product_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_product_clone_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Product.objects.get(id=1).id
+        response = self.client.post(f'/product_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+        
+        
+class InvoiceViewTest(TestCase):
+    """Test invoice views"""
+    
+    username = 'test_user'
+    password = '!y6KD@HbEu4TZf'
+    
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        
+        test_user.save()
+        
+        models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+        models.Company.objects.create(name='MY COMPANY', vat_id='012345', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+        models.Product.objects.create(name='ALFA', description='A PRODUCT', quantity=50, price=100, refill=True)
+        
+        models.Invoice.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), date='2019-03-10 11:16:09.184106+01:00', number='1', amount=1000, kind='ACTIVE', product=models.Product.objects.get(name='ALFA'), product_quantity=5, due_date='2019-03-10 11:16:09.184106+01:00', status='PAID', notes='')
+    
+    def test_invoice_list(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/invoice_list/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_invoice_create_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/invoice_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_invoice_create_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.post('/invoice_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+                
+    def test_invoice_update_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Invoice.objects.get(id=1).id
+        response = self.client.post(f'/invoice_update/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_invoice_clone_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Invoice.objects.get(id=1).id
+        response = self.client.get(f'/invoice_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_invoice_clone_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Invoice.objects.get(id=1).id
+        response = self.client.post(f'/invoice_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+        
+    def test_invoice_active_overview(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(f'/filtered_view/invoice_active/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    
+    def test_invoice_active_overdue(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(f'/filtered_view/invoice_active_overdue/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+        
+    def test_invoice_passive_overview(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(f'/filtered_view/invoice_passive/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    
+    def test_invoice_passive_overdue(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(f'/filtered_view/invoice_passive_overdue/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+        
+    def test_invoice_check_active(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(f'/filtered_view/check_active/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+        
+    def test_invoice_check_passive(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get(f'/filtered_view/check_passive/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+
+
+class PaymentViewTest(TestCase):
+    """Test payment views"""
+    
+    username = 'test_user'
+    password = '!y6KD@HbEu4TZf'
+    
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        
+        test_user.save()
+        
+        models.Company.objects.create(name='ALFA', vat_id='123456', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+        models.Company.objects.create(name='MY COMPANY', vat_id='012345', industry='TECH', city='GENOVA', address='VIA ROMA 1', zip_code='16100', country='ITALY', website='', notes='')
+        
+        models.Payment.objects.create(sender=models.Company.objects.get(name='ALFA'), receiver=models.Company.objects.get(name='MY COMPANY'), kind='ACTIVE', date='2019-03-10 11:16:09.184106+01:00', amount=1000, notes='TBA')
+    
+    def test_payment_list(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/payment_list/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_payment_create_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.get('/payment_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_payment_create_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        response = self.client.post('/payment_create/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+                
+    def test_payment_update_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Payment.objects.get(id=1).id
+        response = self.client.post(f'/payment_update/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_payment_clone_get(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Payment.objects.get(id=1).id
+        response = self.client.get(f'/payment_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_payment_clone_post(self):
+        login = self.client.login(username=self.username, password=self.password)
+        obj_pk = models.Payment.objects.get(id=1).id
+        response = self.client.post(f'/payment_clone/{obj_pk}/')
+        
+        self.assertEqual(login, True)
+        self.assertEqual(response.status_code, 200)
+        
+        
         
