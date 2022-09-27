@@ -17,6 +17,10 @@ Creating an Enterprise Resource Planner (ERP) software that may helps me managin
 8. Let's start the engine with `python manage.py runserver`.
 9. Have fun! :)
 
+###Use docker-compose
+```docker-compose up django_erp```
+
+
 ## Business Logic
 
 The underlying idea is being able to quickly create templates for Companies and Products and cloning them upon necessity.
@@ -27,6 +31,8 @@ I may be willing to extend reporting features a bit, it depends from the free ti
 ## Testing
 
 To run the automated test, input `python manage.py test --parallel auto --verbosity=2`.
+Use predefined docker-compose service if docker is available:
+```docker-compose  -f docker-compose.test.yaml run --rm  django_erp_tests```
 
 At the moment there are more near 100 test cases, covering from models, to forms, to views, and their underlying logics.
 

@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  django_erp:
+    container_name: django_erp_server
+    image: django_erp
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - $PWD:/app
