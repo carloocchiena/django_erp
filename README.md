@@ -32,7 +32,7 @@ At the moment there are more near 100 test cases, covering from models, to forms
 
 ## Frontend
 
-I took a personal challenge in tryin to do the whole project with native Bootstrap 5, without using CSS stylesheet (that is in fact just made up of 3 row of code).
+I took a personal challenge in tryin to do the whole project with Bootstrap 5, without using CSS stylesheet (that is in fact just made up of 3 row of code).
 
 ## Example screenshots
 
