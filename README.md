@@ -30,6 +30,10 @@ To run the automated test, input `python manage.py test --parallel auto --verbos
 
 At the moment there are more near 100 test cases, covering from models, to forms, to views, and their underlying logics.
 
+## Frontend
+
+I took a personal challenge in tryin to do the whole project with native Bootstrap 5, without using CSS stylesheet (that is in fact just made up of 3 row of code).
+
 ## Example screenshots
 
 ![screenshots](gif.gif)
