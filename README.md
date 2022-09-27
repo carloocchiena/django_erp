@@ -91,4 +91,4 @@ Please just:
 2. Once ready to submit a pull request, provide proof of the testing you've done.<br>
 
 ### Contributors
-- ![panjacek](https://github.com/panjacek) 
+- [panjacek](https://github.com/panjacek) 
