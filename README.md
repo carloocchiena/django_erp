@@ -17,9 +17,9 @@ Creating an Enterprise Resource Planner (ERP) software that may helps me managin
 8. Let's start the engine with `python manage.py runserver`.
 9. Have fun! :)
 
-###Use docker-compose
-```docker-compose up django_erp```
+### Use docker-compose
 
+Run it in Docker with ```docker-compose up django_erp```
 
 ## Business Logic
 
@@ -89,3 +89,6 @@ Every feedback and contribution is welcome.
 Please just:
 1. Open an issue and discuss the changes you'd like to make or  the bug\issue you'd like to report.<br>
 2. Once ready to submit a pull request, provide proof of the testing you've done.<br>
+
+### Contributors
+- ![panjacek](https://github.com/panjacek) 
