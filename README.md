@@ -30,6 +30,10 @@ To run the automated test, input `python manage.py test --parallel auto --verbos
 
 At the moment there are more than 70 test cases, covering from models, to forms, to views, and their underlying logics.
 
+## Example screenshots
+
+![screenshots](gif.gif)
+
 ## Features
 
 List of all the available feature as per 14 Sept 2022
