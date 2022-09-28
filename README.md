@@ -81,8 +81,9 @@ List of all the available feature as per 14 Sept 2022
 
 ## Walkthrough
 I created also some additional walktrought that should help you configuring your Django project:<br>
-[The django walkthrough](django_walktrought.md).<br>
-[A list of useful commands](CLI_commands.md).<br>
+
+- [The django walkthrough](django_walktrought.md).<br>
+- [A list of useful commands](CLI_commands.md).<br>
 
 ## Contribute
 Every feedback and contribution is welcome.
