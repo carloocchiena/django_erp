@@ -86,7 +86,7 @@ I created also some additional walktrought that should help you configuring your
 - [A list of useful commands](CLI_commands.md).<br>
 
 ## Contribute
-Every feedback and contribution is welcome.
+Every feedback and contributions are welcome.
 Please just:
 1. Open an issue and discuss the changes you'd like to make or  the bug\issue you'd like to report.<br>
 2. Once ready to submit a pull request, provide proof of the testing you've done.<br>
