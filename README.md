@@ -30,9 +30,9 @@ I may be willing to extend reporting features a bit, it depends from the free ti
 
 ## Testing
 
-To run the automated test, input `python manage.py test --parallel auto --verbosity=2`.
-Use predefined docker-compose service if docker is available:
-```docker-compose  -f docker-compose.test.yaml run --rm  django_erp_tests```
+To run the automated test, input `python manage.py test --parallel auto --verbosity=2`.<br>
+Use predefined docker-compose service if docker is available:<br>
+```docker-compose  -f docker-compose.test.yaml run --rm  django_erp_tests```<br><br>
 
 At the moment there are more near 100 test cases, covering from models, to forms, to views, and their underlying logics.
 
